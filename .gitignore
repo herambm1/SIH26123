@@ -1,0 +1,62 @@
+# ── Python ──────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+.venv/
+venv/
+env/
+.env
+*.egg-info/
+dist/
+build/
+*.egg
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+htmlcov/
+.coverage
+coverage.xml
+
+# ── Java / Maven ─────────────────────────────────────────────────────────────
+target/
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+*.iml
+.mvn/
+mvnw
+mvnw.cmd
+
+# ── Node / React / Vite ──────────────────────────────────────────────────────
+node_modules/
+dist/
+.next/
+out/
+.vite/
+
+# ── Databases ────────────────────────────────────────────────────────────────
+*.db
+*.sqlite
+*.sqlite3
+
+# ── Secrets and environment ──────────────────────────────────────────────────
+.env
+.env.*
+*.env
+secrets/
+*.pem
+*.key
+*.crt
+
+# ── IDE / OS ─────────────────────────────────────────────────────────────────
+.idea/
+.vscode/
+.claude/
+*.suo
+*.user
+.DS_Store
+Thumbs.db
+desktop.ini

@@ -1,0 +1,40 @@
+# docker-compose.yml — optional, for demo-day convenience
+# Owner: Member 6
+#
+# Services:
+#   simulation  — Python FastAPI control server (port 8001)
+#   backend     — Java Spring Boot backend (port 8080)
+#
+# The dashboard runs via `npm run dev` in local development.
+# To bundle it into compose for a single-command demo day, see docs/06_BACKEND.md §8.8.
+#
+# Usage:
+#   docker-compose up
+#
+# NOTE: Dockerfiles for each service are Member 6's implementation responsibility.
+# This file is a structural placeholder defining service names and ports.
+
+version: "3.9"
+
+services:
+  simulation:
+    build:
+      context: .
+      dockerfile: simulation/Dockerfile      # Member 6 to create
+    ports:
+      - "8001:8001"
+    environment:
+      - PYTHONUNBUFFERED=1
+    command: ["python", "-m", "simulation.runner"]
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile                 # Member 6 to create
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:sqlite:/app/sih26123.db
+      - SIMULATION_ENGINE_URL=http://simulation:8001
+    depends_on:
+      - simulation
