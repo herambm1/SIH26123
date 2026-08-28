@@ -26,9 +26,8 @@ target/
 *.ear
 *.nar
 *.iml
-.mvn/
-mvnw
-mvnw.cmd
+# mvnw / mvnw.cmd / .mvn/wrapper/ are intentionally tracked (Maven Wrapper —
+# makes the backend build reproducible without a system-wide Maven install).
 
 # ── Node / React / Vite ──────────────────────────────────────────────────────
 node_modules/
