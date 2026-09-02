@@ -52,6 +52,11 @@ class RobotAgent:
         self.state: RobotState | None = None    # initialised by simulation runner before tick 0
         self._stall_ticks: int = 0
         self._waiting_on: str | None = None     # robot_id of the peer we're waiting on
+        self._blocked_cells: list[Position] = []
+        self._temporary_avoid_cells: list[Position] = []
+        self._version: int = 1
+        self._replan_requested: bool = False
+        self._action_this_tick: str | None = None
 
     def tick(self, current_tick: int) -> RobotState:
         """Execute one simulation tick for this robot.
@@ -71,58 +76,237 @@ class RobotAgent:
         Implementation: Member 3's responsibility.
         Returns a fully populated RobotState for this tick.
         """
-        from robot_agent.communication.messages import build_intent_message  # noqa: import here to avoid circular at module load
+        try:
+            from robot_agent.communication.messages import build_intent_message  # noqa: import here to avoid circular at module load
+        except ImportError:
+            build_intent_message = None
 
-        telemetry = self.sensor.read(self.robot_id, current_tick)          # Member 5
+        telemetry = None
+        if self.sensor:
+            try:
+                telemetry = self.sensor.read(self.robot_id, current_tick)          # Member 5
+            except Exception:
+                telemetry = None
+
         self.state = self._apply_telemetry(self.state, telemetry, current_tick)
 
-        if self._needs_replan():
-            self.state.currentPath = self.planner.plan(                    # Member 1
-                self.state.position,
-                self.state.destination,
-                self._known_blocked_cells(),
-            ).waypoints
+        if self._needs_replan() and self.planner and self.state.destination:
+            try:
+                plan_result = self.planner.plan(                    # Member 1
+                    self.state.position,
+                    self.state.destination,
+                    self._known_blocked_cells(),
+                )
+                if hasattr(plan_result, "waypoints"):
+                    self.state.currentPath = list(plan_result.waypoints)
+                elif isinstance(plan_result, list):
+                    self.state.currentPath = list(plan_result)
+                self.state.status = "MOVING"
+                self._version += 1
+            except Exception:
+                # Planner unavailable / raises PlanningFailedError: robot enters status=BLOCKED, retries next tick
+                self.state.status = "BLOCKED"
+                self.state.velocity = 0.0
 
-        incoming = self.transport.receive(self.robot_id)                   # Member 2
-        conflict = self.detector.detect(self.state, self._current_path_obj(), incoming)  # Member 3
-        if conflict:
+        incoming = []
+        if self.transport:
+            try:
+                incoming = self.transport.receive(self.robot_id) or []              # Member 2
+            except Exception:
+                incoming = []
+
+        conflict = None
+        if self.detector:
+            conflict = self.detector.detect(self.state, self._current_path_obj(), incoming)  # Member 3
+
+        if conflict and self.resolver:
             action = self.resolver.resolve(conflict, self.state, incoming)
             self._apply_action(action, conflict)
 
-        if self.deadlock.check(self.robot_id, self._stall_ticks, self._waiting_on):
+        if self.deadlock and self.deadlock.check(self.robot_id, self._stall_ticks, self._waiting_on):
             self._force_yield()
 
         self._advance_one_cell_if_clear()
-        self.transport.broadcast(build_intent_message(self.state))         # Member 2
+
+        # Broadcast intent
+        if self.transport:
+            intent_msg = None
+            if build_intent_message:
+                try:
+                    intent_msg = build_intent_message(self.state)
+                except Exception:
+                    intent_msg = None
+            if intent_msg is None:
+                intent_msg = {
+                    "robotId": self.state.robotId,
+                    "position": self.state.position,
+                    "destination": self.state.destination,
+                    "plannedPath": list(self.state.currentPath or []),
+                    "currentTask": self.state.currentTaskId,
+                    "priority": getattr(self.state, "task_priority", 1),
+                    "battery": self.state.battery,
+                    "status": self.state.status,
+                    "timestamp": current_tick,
+                }
+            try:
+                self.transport.broadcast(intent_msg)                                # Member 2
+            except Exception:
+                pass
+
         self.state.timestamp = current_tick
         return self.state
 
-    # ── Private helpers — stubs for Member 3 to implement ───────────────────
+    # ── Private helpers — implementations for Member 3 ─────────────────────
 
-    def _apply_telemetry(self, state, telemetry, current_tick: int):
+    def _apply_telemetry(self, state, telemetry, current_tick: int) -> RobotState:
         """Fold sensor telemetry into the current robot state."""
-        raise NotImplementedError
+        if state is None:
+            state = RobotState(
+                robotId=self.robot_id,
+                position=Position(x=0, y=0),
+                velocity=0.0,
+                battery=100.0,
+                currentTaskId=None,
+                destination=None,
+                currentPath=[],
+                status="IDLE",
+                timestamp=current_tick,
+            )
+
+        if telemetry is not None:
+            if hasattr(telemetry, "battery") and telemetry.battery is not None:
+                state.battery = float(telemetry.battery)
+            if hasattr(telemetry, "sensorHealth") and telemetry.sensorHealth == "OFFLINE":
+                state.status = "OFFLINE"
+                state.velocity = 0.0
+            if hasattr(telemetry, "position") and telemetry.position is not None:
+                if state.status != "OFFLINE":
+                    state.position = Position(x=telemetry.position.x, y=telemetry.position.y)
+        return state
 
     def _needs_replan(self) -> bool:
         """Return True if the robot needs a new path this tick."""
-        raise NotImplementedError
+        if not self.state or self.state.status == "OFFLINE":
+            return False
+        if self._replan_requested:
+            self._replan_requested = False
+            return True
+        if self.state.destination is not None:
+            # Need replan if no path exists and we haven't reached destination
+            has_no_path = not self.state.currentPath or len(self.state.currentPath) == 0
+            not_at_goal = (
+                self.state.position.x != self.state.destination.x
+                or self.state.position.y != self.state.destination.y
+            )
+            return has_no_path and not_at_goal
+        return False
 
     def _known_blocked_cells(self) -> list:    # list[Position]
         """Return the set of currently known blocked cells."""
-        raise NotImplementedError
+        combined = list(self._blocked_cells)
+        for p in self._temporary_avoid_cells:
+            if not any(b.x == p.x and b.y == p.y for b in combined):
+                combined.append(p)
+        return combined
 
-    def _current_path_obj(self):               # -> RobotPath
+    def _current_path_obj(self) -> RobotPath:
         """Reconstruct a RobotPath object from the current state."""
-        raise NotImplementedError
+        waypoints = list(self.state.currentPath) if self.state and self.state.currentPath else []
+        ts = self.state.timestamp if self.state else 0
+        return RobotPath(
+            robotId=self.robot_id,
+            waypoints=waypoints,
+            generatedAtTick=ts,
+            version=self._version,
+        )
 
     def _apply_action(self, action: str, conflict) -> None:
         """Apply a conflict resolution action to this robot's state."""
-        raise NotImplementedError
+        self._action_this_tick = action
+        peer_id = None
+        if conflict and hasattr(conflict, "robotIds"):
+            peer_id = next((rid for rid in conflict.robotIds if rid != self.robot_id), None)
+
+        if action == "CONTINUE":
+            self._waiting_on = None
+            if self.state.status == "WAITING":
+                self.state.status = "MOVING"
+            self.state.velocity = 1.0
+        elif action == "WAIT":
+            self.state.status = "WAITING"
+            self.state.velocity = 0.0
+            self._waiting_on = peer_id
+        elif action == "YIELD":
+            self.state.status = "WAITING"
+            self.state.velocity = 0.0
+            self._waiting_on = peer_id
+            if conflict and hasattr(conflict, "predictedCell") and conflict.predictedCell:
+                self._temporary_avoid_cells.append(conflict.predictedCell)
+                self._replan_requested = True
+        elif action == "REROUTE":
+            self._waiting_on = None
+            if conflict and hasattr(conflict, "predictedCell") and conflict.predictedCell:
+                self._temporary_avoid_cells.append(conflict.predictedCell)
+            self._replan_requested = True
+        elif action == "REASSIGN_TASK":
+            self.state.status = "BLOCKED"
+            self.state.velocity = 0.0
+            self._waiting_on = None
 
     def _force_yield(self) -> None:
         """Force the robot to yield and replan (deadlock recovery)."""
-        raise NotImplementedError
+        self.state.status = "WAITING"
+        self.state.velocity = 0.0
+        self._stall_ticks = 0
+        self._waiting_on = None
+        self._replan_requested = True
 
     def _advance_one_cell_if_clear(self) -> None:
         """Move the robot one cell along its current path if the next cell is clear."""
-        raise NotImplementedError
+        if not self.state or self.state.status in ("OFFLINE", "WAITING", "BLOCKED"):
+            self.state.velocity = 0.0
+            if self.state and self.state.status in ("WAITING", "BLOCKED"):
+                self._stall_ticks += 1
+            return
+
+        if self.state.currentPath and len(self.state.currentPath) > 0:
+            next_wp = self.state.currentPath[0]
+            blocked = any(b.x == next_wp.x and b.y == next_wp.y for b in self._known_blocked_cells())
+            if blocked:
+                self.state.status = "BLOCKED"
+                self.state.velocity = 0.0
+                self._stall_ticks += 1
+                self._replan_requested = True
+                return
+
+            # Advance
+            self.state.currentPath.pop(0)
+            old_pos = (self.state.position.x, self.state.position.y)
+            self.state.position = Position(x=next_wp.x, y=next_wp.y, tick=None)
+            new_pos = (self.state.position.x, self.state.position.y)
+
+            if old_pos != new_pos:
+                self._stall_ticks = 0
+                self._waiting_on = None
+                self.state.velocity = 1.0
+            else:
+                self._stall_ticks += 1
+
+            # Check if destination reached
+            if (
+                self.state.destination
+                and self.state.position.x == self.state.destination.x
+                and self.state.position.y == self.state.destination.y
+            ):
+                self.state.status = "IDLE"
+                self.state.velocity = 0.0
+                self.state.currentTaskId = None
+                self.state.currentPath = []
+        else:
+            self.state.velocity = 0.0
+            if (
+                self.state.destination
+                and self.state.position.x == self.state.destination.x
+                and self.state.position.y == self.state.destination.y
+            ):
+                self.state.status = "IDLE"
