@@ -32,4 +32,12 @@ class SensorFaultConfig:
         """
         Implementation: Member 5's responsibility.
         """
-        raise NotImplementedError
+        if noise_std < 0:
+            raise ValueError("noise_std must be non-negative")
+        if not 0.0 <= dropout_rate <= 1.0:
+            raise ValueError("dropout_rate must be between 0.0 and 1.0")
+        if offline_after_tick is not None and offline_after_tick < 0:
+            raise ValueError("offline_after_tick must be non-negative or None")
+        self.noise_std = float(noise_std)
+        self.dropout_rate = float(dropout_rate)
+        self.offline_after_tick = offline_after_tick
