@@ -22,11 +22,8 @@ class DeadlockDetector:
     """
 
     def __init__(self, stall_threshold: int = 5):
-        """
-        stall_threshold: number of ticks without progress before deadlock is declared.
-        Implementation: Member 3's responsibility.
-        """
-        raise NotImplementedError
+        """stall_threshold: number of ticks without progress before deadlock is declared."""
+        self.stall_threshold = stall_threshold
 
     def check(
         self,
@@ -39,7 +36,7 @@ class DeadlockDetector:
         robot_id: the robot being checked.
         stall_ticks: how many consecutive ticks this robot has made no progress.
         waiting_on: robot_id of the peer this robot is waiting on, or None.
-
-        Implementation: Member 3's responsibility.
         """
-        raise NotImplementedError
+        if waiting_on is None:
+            return False
+        return stall_ticks >= self.stall_threshold
