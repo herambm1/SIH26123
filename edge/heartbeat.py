@@ -25,7 +25,10 @@ class HeartbeatMonitor:
 
         Implementation: Member 5's responsibility.
         """
-        raise NotImplementedError
+        if miss_threshold < 1:
+            raise ValueError("miss_threshold must be at least 1")
+        self.miss_threshold = miss_threshold
+        self._misses_by_robot: dict[str, int] = {}
 
     def record(self, robot_id: str, telemetry: "Telemetry | None") -> None:
         """Record one tick's reading for a robot.
@@ -36,11 +39,15 @@ class HeartbeatMonitor:
 
         Implementation: Member 5's responsibility.
         """
-        raise NotImplementedError
+        health = None if telemetry is None else telemetry.sensorHealth
+        if health is None or health in {"DEGRADED", "OFFLINE"}:
+            self._misses_by_robot[robot_id] = self._misses_by_robot.get(robot_id, 0) + 1
+        else:
+            self._misses_by_robot[robot_id] = 0
 
     def is_offline(self, robot_id: str) -> bool:
         """Return True if robot_id has exceeded the miss threshold.
 
         Implementation: Member 5's responsibility.
         """
-        raise NotImplementedError
+        return self._misses_by_robot.get(robot_id, 0) >= self.miss_threshold
