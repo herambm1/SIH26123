@@ -111,7 +111,7 @@ Owner: Member 5. Software-only by default: `SensorSource`/`SimulationSensorSourc
 
 ## 11. Simulation, Scenarios, and the Independent Referee
 
-Owner: Member 3 (`simulation/runner.py`, `simulation/scenarios/`, `simulation/referee.py`), map instance owner: Member 1 (`simulation/warehouse/demo_map.py`). Eight scenarios: normal movement, intersection conflict, narrow aisle, deadlock, blocked aisle, task reassignment, high fleet load, and a **negative control** (no possible conflicts) to preempt "did you cherry-pick scenarios?" `simulation/referee.py` is a ground-truth collision checker **independent of `ConflictDetector`** — it must never call into or depend on collision_engine's own logic, so "zero collisions" is verified, not assumed by construction.
+Owner: Member 3 (`simulation/runner.py`, `simulation/scenarios/`, `simulation/referee.py`), map instance owner: Member 1 (`simulation/warehouse/demo_map.py`). Nine scenarios: normal movement, intersection conflict, narrow aisle, deadlock, blocked aisle, task reassignment, high fleet load, parallel aisles, and a **negative control** (no possible conflicts) to preempt "did you cherry-pick scenarios?" `simulation/referee.py` is a ground-truth collision checker **independent of `ConflictDetector`** — it must never call into or depend on collision_engine's own logic, so "zero collisions" is verified, not assumed by construction.
 
 ## 12. Task Allocation
 
@@ -176,7 +176,7 @@ three-way comparison: STOP_AND_WAIT vs CENTRALIZED_RESERVATION vs DECENTRALIZED_
 
 ## 19. Evaluation Methodology
 
-Three modes compared on identical scenarios, same map/task batch/seed per run (paired comparison), 10–20 runs per scenario, all eight scenarios including the negative control. Collisions certified by the independent referee (§11), never by `ConflictDetector`'s own count. Headline metric for judges: total makespan on a fixed task batch, `DECENTRALIZED_PROPOSED` vs. `STOP_AND_WAIT`; everything else (vs. `CENTRALIZED_RESERVATION`, idle time, message count) is supporting evidence. Target: 0 referee-verified collisions, ≥20% makespan reduction vs. stop-and-wait.
+Three modes compared on identical scenarios, same map/task batch/seed per run (paired comparison), 10–20 runs per scenario, all nine scenarios including the negative control. Collisions certified by the independent referee (§11), never by `ConflictDetector`'s own count. Headline metric for judges: total makespan on a fixed task batch, `DECENTRALIZED_PROPOSED` vs. `STOP_AND_WAIT`; everything else (vs. `CENTRALIZED_RESERVATION`, idle time, message count) is supporting evidence. Target: 0 referee-verified collisions, ≥20% makespan reduction vs. stop-and-wait.
 
 ## 20. Scope Control — MVP vs. Optional
 
@@ -202,7 +202,7 @@ Three modes compared on identical scenarios, same map/task batch/seed per run (p
 
 - Python↔Java boundary is now frozen (FastAPI control server + REST push), not left as "TBD."
 - Contracts are now real, importable Python code (`shared/python/models.py`), not just markdown descriptions copied into six files.
-- `simulation/runner.py`, `simulation/referee.py`, and all eight scenarios now have a named owner (Member 3) and Member 1 owns the concrete demo map instance — previously unowned.
+- `simulation/runner.py`, `simulation/referee.py`, and all nine scenarios now have a named owner (Member 3) and Member 1 owns the concrete demo map instance — previously unowned.
 - Exact function/class signatures are specified for every module (see the `docs/0X_*.md` files §9 in each).
 - The independent collision referee is now explicit and structurally separated from `ConflictDetector`.
 - Six fully detailed, implementation-ready role documents replace the earlier thin overviews.

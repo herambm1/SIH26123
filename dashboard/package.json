@@ -2,12 +2,13 @@
   "name": "sih26123-dashboard",
   "version": "0.0.1",
   "private": true,
-  "description": "SIH 2026 Project 26123 — Fleet Monitoring Dashboard",
+  "description": "SIH 2026 Project 26123 \u00e2\u20ac\u201d Fleet Monitoring Dashboard",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "lint": "eslint . --ext .ts,.tsx"
+    "lint": "eslint . --ext .ts,.tsx",
+    "test:unit": "node --test tests/productDerive.test.ts"
   },
   "dependencies": {
     "react": "^18.3.1",

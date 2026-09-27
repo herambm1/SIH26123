@@ -31,7 +31,6 @@ from shared.python.models import Position, RobotPath, WarehouseMap
 from planner.warehouse_map import build_warehouse_map, InvalidMapError
 from planner.astar import Planner, PlanningFailedError, validate_path
 from planner.centralized_baseline import plan_centralized
-from simulation.warehouse/demo_map import get_demo_map if False else None
 from simulation.warehouse.demo_map import get_demo_map
 
 
@@ -693,6 +692,102 @@ class TestPlanCentralized:
         )
         with pytest.raises(InvalidMapError):
             plan_centralized({"R1": (_p(1, 1), _p(4, 4))}, wmap, seed=0)
+
+
+class TestPlanCentralizedEdgeConflicts:
+    """Regression tests for the referee-verified CENTRALIZED_RESERVATION
+    collisions the benchmark found in c_narrow_aisle, d_deadlock and
+    g_high_load.
+
+    The reservation table used to reserve only vertices (cell, tick). Two
+    robots traversing the same edge in opposite directions between the same
+    two ticks share NO vertex — A is at u@t and v@t+1, B is at v@t and u@t+1 —
+    so a vertex-only table happily schedules them straight through each other.
+    simulation/referee.py flags exactly that as a collision (its swap rule).
+    """
+
+    @staticmethod
+    def _corridor_map(width=8, height=1) -> WarehouseMap:
+        """A strictly single-file corridor: swapping is the ONLY way for two
+        head-on robots to pass, so any surviving swap shows up immediately."""
+        return build_warehouse_map(
+            width=width, height=height, obstacles=[], choke_points=[],
+            pickup_points=[_p(0, 0)], drop_points=[_p(width - 1, 0)],
+        )
+
+    @staticmethod
+    def _edge_swaps(result: dict) -> list:
+        """Every pair of robots that exchange cells between consecutive ticks.
+
+        Mirrors simulation/referee.py's swap rule, re-derived here rather than
+        imported — the referee must stay an independent checker.
+        """
+        by_robot: dict = {}
+        for robot_id, path in result.items():
+            by_robot[robot_id] = {wp.tick: (wp.x, wp.y) for wp in path.waypoints}
+
+        swaps = []
+        ids = sorted(by_robot)
+        for i in range(len(ids)):
+            for j in range(i + 1, len(ids)):
+                a, b = by_robot[ids[i]], by_robot[ids[j]]
+                for t in sorted(set(a) & set(b)):
+                    if (t + 1) in a and (t + 1) in b:
+                        if a[t] == b[t + 1] and a[t + 1] == b[t] and a[t] != a[t + 1]:
+                            swaps.append((ids[i], ids[j], t))
+        return swaps
+
+    def test_head_on_pair_in_single_file_corridor_never_swaps(self):
+        """Reproduces c_narrow_aisle / d_deadlock: two robots swapping ends."""
+        wmap = self._corridor_map()
+        start_goals = {"R1": (_p(0, 0), _p(7, 0)), "R2": (_p(7, 0), _p(0, 0))}
+
+        try:
+            result = plan_centralized(start_goals, wmap, seed=42)
+        except PlanningFailedError:
+            # Refusing to schedule an impossible swap is a correct outcome —
+            # in a 1-wide corridor with no passing place there is no
+            # collision-free schedule. Silently emitting one is not.
+            return
+
+        assert self._edge_swaps(result) == [], "robots swapped through each other"
+
+    def test_three_head_on_pairs_never_swap(self):
+        """Reproduces g_high_load, which had three exactly-opposed pairs and
+        produced three referee-verified collisions on one tick."""
+        wmap = build_warehouse_map(
+            width=12, height=6, obstacles=[], choke_points=[],
+            pickup_points=[_p(0, 0)], drop_points=[_p(11, 5)],
+        )
+        start_goals = {
+            "R1": (_p(0, 1), _p(11, 1)), "R2": (_p(11, 1), _p(0, 1)),
+            "R3": (_p(0, 3), _p(11, 3)), "R4": (_p(11, 3), _p(0, 3)),
+            "R5": (_p(0, 5), _p(11, 5)), "R6": (_p(11, 5), _p(0, 5)),
+        }
+
+        result = plan_centralized(start_goals, wmap, seed=42)
+
+        assert self._edge_swaps(result) == [], "head-on pairs swapped through each other"
+
+    def test_vertex_freedom_still_holds_alongside_edge_freedom(self):
+        """The original guarantee must not regress while fixing edges."""
+        wmap = build_warehouse_map(
+            width=12, height=6, obstacles=[], choke_points=[],
+            pickup_points=[_p(0, 0)], drop_points=[_p(11, 5)],
+        )
+        start_goals = {
+            "R1": (_p(0, 1), _p(11, 1)), "R2": (_p(11, 1), _p(0, 1)),
+            "R3": (_p(0, 3), _p(11, 3)), "R4": (_p(11, 3), _p(0, 3)),
+        }
+
+        result = plan_centralized(start_goals, wmap, seed=42)
+
+        space_time: dict = {}
+        for robot_id, path in result.items():
+            for wp in path.waypoints:
+                key = (wp.x, wp.y, wp.tick)
+                assert key not in space_time, f"vertex collision at {key}"
+                space_time[key] = robot_id
 
 
 # ═══════════════════════════════════════════════════════════════════════════════

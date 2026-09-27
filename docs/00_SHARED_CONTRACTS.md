@@ -52,7 +52,15 @@ Telemetry      { robotId: str, position: Position, battery: float,
 
 SimulationEvent{ eventId: str, type: str, tick: int, payload: dict }
                  type ∈ {AISLE_BLOCKED, ROBOT_UNAVAILABLE, TASK_CREATED,
-                          CONFLICT_DETECTED, DEADLOCK_DETECTED, REROUTE, TASK_REASSIGNED}
+                          CONFLICT_DETECTED, DEADLOCK_DETECTED, REROUTE,
+                          TASK_REASSIGNED, NEGOTIATION}
+                 NEGOTIATION (added Phase 5, dashboard frontend, approved
+                 addition "b-2"): observability only, emitted by
+                 simulation/runner.py from real RobotAgent/ConflictResolver
+                 attributes already computed inside agent.tick() — never a
+                 new decision, DECENTRALIZED_PROPOSED mode only. payload:
+                 {robotId: str, peerRobotId: str|null,
+                  resolutionAction: CONTINUE|WAIT|YIELD|REROUTE|REASSIGN_TASK}
 
 PerformanceMetric { runId: str, scenarioId: str, mode: str, totalCompletionTicks: int,
                      avgCompletionTicks: float, collisionCount: int, deadlockCount: int,
@@ -86,7 +94,7 @@ PerformanceMetric { runId: str, scenarioId: str, mode: str, totalCompletionTicks
 | `Task` / `TaskAssignment` | Member 6 (backend) | Robot Agent (via Java REST → Python control server payload) |
 | `Conflict` | Member 3 (`collision_engine/detection.py`) | Member 3 itself (`resolution.py`), logged as `SimulationEvent` |
 | `Telemetry` | Member 5 (`edge/sensor_source.py`) | Member 3 (agent.py), Member 6 (ingestion) |
-| `SimulationEvent` | Members 3, 5, 6 (depending on type) | Member 4 (alerts), Member 6 (persistence) |
+| `SimulationEvent` | Members 3, 5, 6 (depending on type); NEGOTIATION by Member 3's runner.py (Phase 5 "b-2") | Member 4 (alerts, event timeline via `GET /api/events` — added Phase 5 "b-1", read-only, not scenario/run-tagged), Member 6 (persistence) |
 | `PerformanceMetric` | Member 3's `simulation/runner.py` | Member 6 (storage), Member 4 (dashboard) |
 
 ## Cross-language mirrors

@@ -1,0 +1,135 @@
+/* dashboard/src/styles/theme.css
+ * Owner: Member 4
+ *
+ * Design tokens for the SIH 26123 fleet console. Flat, high-contrast,
+ * industrial control/SCADA reference — no gradients, no glassmorphism, no
+ * decorative rounded cards, no hero sections. Dark-first (this is a
+ * projector/control-room interface, not a light SaaS product).
+ *
+ * Status color semantics are FIXED here and reused identically on the
+ * warehouse map, the robot inspector, the event timeline, and the
+ * benchmark view (see src/lib/statusColors.ts, which reads these tokens).
+ */
+
+:root {
+  /* Surfaces */
+  --surface-0: #0a0d10;   /* app background */
+  --surface-1: #12161b;   /* panel background */
+  --surface-2: #191f26;   /* raised/inset panel (cards, table rows) */
+  --surface-3: #212933;   /* hover / active surface */
+  --border-0: #2a323d;
+  --border-1: #3a4552;
+
+  /* Text */
+  --text-0: #e8edf2;      /* primary */
+  --text-1: #9aa7b4;      /* secondary/labels */
+  --text-2: #63707d;      /* tertiary/disabled */
+
+  /* Accent (selection, links, active tab) */
+  --accent: #3fa9f5;
+  --accent-dim: #1d3a52;
+
+  /* Status semantics — ONE color per RobotState.status, used everywhere */
+  --status-idle: #6b7684;
+  --status-moving: #3fa9f5;
+  --status-waiting: #e0a83f;
+  --status-blocked: #e05a3f;
+  --status-charging: #3fd6b0;
+  --status-offline: #ff3b4a;
+  /* Derived (not a RobotState.status value; from resolutionAction / completion) */
+  --status-yield: #a06ee0;
+  --status-completed: #3fd66f;
+  --status-timeout: #63707d;
+
+  /* Semantic feedback */
+  --ok: #3fd66f;
+  --warn: #e0a83f;
+  --error: #ff3b4a;
+
+  /* Typography */
+  --font-mono: ui-monospace, "SFMono-Regular", "Cascadia Mono", "Consolas", monospace;
+  --font-sans: -apple-system, "Segoe UI", system-ui, sans-serif;
+
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--surface-0);
+  color: var(--text-0);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+button {
+  font-family: inherit;
+  font-size: inherit;
+  color: var(--text-0);
+  background: var(--surface-2);
+  border: 1px solid var(--border-1);
+  border-radius: 2px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+button:hover:not(:disabled) {
+  background: var(--surface-3);
+}
+
+button:disabled {
+  color: var(--text-2);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+button.primary {
+  background: var(--accent-dim);
+  border-color: var(--accent);
+  color: var(--text-0);
+}
+
+select, input {
+  font-family: var(--font-mono);
+  font-size: inherit;
+  color: var(--text-0);
+  background: var(--surface-2);
+  border: 1px solid var(--border-1);
+  border-radius: 2px;
+  padding: 4px 6px;
+}
+
+label {
+  color: var(--text-1);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+a {
+  color: var(--accent);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--surface-1);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-1);
+}

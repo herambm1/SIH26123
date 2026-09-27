@@ -32,6 +32,7 @@ def list_scenarios() -> list[str]:
         "f_task_reassignment",
         "g_high_load",
         "h_negative_control",
+        "i_parallel_aisles",
     ]
 
 
@@ -48,6 +49,7 @@ def get_scenario(scenario_id: str, seed: int = 42, warehouse_map: WarehouseMap |
         "f": "f_task_reassignment",
         "g": "g_high_load",
         "h": "h_negative_control",
+        "i": "i_parallel_aisles",
     }
     normalized = id_map.get(sid, sid)
 
@@ -75,5 +77,8 @@ def get_scenario(scenario_id: str, seed: int = 42, warehouse_map: WarehouseMap |
     elif normalized == "h_negative_control":
         from simulation.scenarios.h_negative_control import get_scenario as load_h
         return load_h(seed, warehouse_map=warehouse_map)
+    elif normalized == "i_parallel_aisles":
+        from simulation.scenarios.i_parallel_aisles import get_scenario as load_i
+        return load_i(seed, warehouse_map=warehouse_map)
     else:
         raise ValueError(f"Unknown scenario ID: {scenario_id}. Supported: {list_scenarios()}")

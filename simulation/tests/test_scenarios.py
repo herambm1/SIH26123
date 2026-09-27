@@ -1,4 +1,4 @@
-"""Scenario test suite: verifies all 8 demo scenarios execute cleanly without crashing.
+"""Scenario test suite: verifies all demo scenarios execute cleanly without crashing.
 Owner: Member 3
 """
 
@@ -36,7 +36,7 @@ class TestAllScenarios(unittest.TestCase):
 
     def test_all_scenarios_execute_to_completion(self):
         scenarios = list_scenarios()
-        self.assertEqual(len(scenarios), 8)
+        self.assertEqual(len(scenarios), 9)
 
         for sid in scenarios:
             with self.subTest(scenario=sid):

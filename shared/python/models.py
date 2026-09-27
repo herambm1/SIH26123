@@ -132,9 +132,20 @@ class SimulationEvent:
     (alerts feed)."""
     eventId: str
     type: str      # AISLE_BLOCKED|ROBOT_UNAVAILABLE|TASK_CREATED|CONFLICT_DETECTED
-                   # |DEADLOCK_DETECTED|REROUTE|TASK_REASSIGNED
+                   # |DEADLOCK_DETECTED|REROUTE|TASK_REASSIGNED|NEGOTIATION
     tick: int
     payload: dict = field(default_factory=dict)   # type-specific
+    # NEGOTIATION (added Phase 5, dashboard frontend, "b-2"): observability-only,
+    # emitted by simulation/runner.py from real RobotAgent/ConflictResolver
+    # attributes (_action_this_tick, _waiting_on/_blocked_by_peer) after
+    # agent.tick() already ran — never a new decision, never invented data.
+    # payload: {robotId: str, peerRobotId: str|None, resolutionAction: str}
+    # where resolutionAction in CONTINUE|WAIT|YIELD|REROUTE|REASSIGN_TASK
+    # (the same Conflict.resolutionAction vocabulary above). Fires only on a
+    # genuine change from the previously-recorded action for that robot.
+    # DECENTRALIZED_PROPOSED mode only — STOP_AND_WAIT/CENTRALIZED_RESERVATION
+    # never run ConflictDetector/ConflictResolver, so there is nothing to
+    # observe for those modes.
 
 
 @dataclass

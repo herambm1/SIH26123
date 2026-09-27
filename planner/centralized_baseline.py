@@ -8,7 +8,9 @@ simulation/runner.py to benchmark against the decentralized proposed approach.
 Algorithm: Sequential prioritized A* against one shared space-time reservation
 table.  Each robot is planned in a seed-determined order; once its path is
 chosen, the (cell, tick) pairs it occupies are reserved before the next robot
-plans.  No two robots are ever assigned the same cell at the same tick.
+plans.  No two robots are ever assigned the same cell at the same tick
+(vertex conflicts), and no two robots are assigned opposite traversals of the
+same edge between consecutive ticks (edge/swap conflicts).
 
 This is a strong, realistic baseline — not the weak stop-and-wait strawman.
 
@@ -56,7 +58,10 @@ def plan_centralized(
     -------
     dict[str, RobotPath]
         One RobotPath per robot.  Guaranteed: no two paths share a (cell, tick)
-        pair (i.e., zero space-time collisions by construction).
+        pair, and no two paths traverse the same edge in opposite directions
+        between consecutive ticks (i.e., zero vertex AND zero edge/swap
+        collisions by construction — both of the collision types the
+        independent referee in simulation/referee.py checks for).
 
     Raises
     ------
@@ -176,7 +181,12 @@ def _astar_reserved(
     all_blocked: frozenset,          # frozenset[tuple[int,int]]
     reservation: dict,               # dict[tuple[int,int,int], str] — shared table
 ) -> Optional[list]:                 # Optional[list[Position]]
-    """Space-time A* that avoids cells already reserved by prior robots.
+    """Space-time A* that avoids cells and edges already reserved by prior robots.
+
+    Rejects both conflict types the referee checks: vertex conflicts (two
+    robots in one cell at one tick) and edge/swap conflicts (two robots
+    exchanging cells between consecutive ticks, which shares no vertex and so
+    is invisible to a vertex-only reservation table).
 
     Waiting in place (cost +1 tick) is permitted so robots can queue behind
     earlier robots at choke points.  Max search depth: width*height*3 ticks.
@@ -224,7 +234,18 @@ def _astar_reserved(
             if (nx, ny) in all_blocked:
                 continue
             if (nx, ny, next_tick) in reservation:
-                continue  # already claimed by a prior robot
+                continue  # vertex conflict: already claimed by a prior robot
+
+            # Edge (swap) conflict: a prior robot sits in the cell we want to
+            # move INTO at the current tick and moves INTO the cell we are
+            # leaving on the next tick — i.e. it is coming the other way
+            # through this very edge. No vertex is ever shared, so the vertex
+            # check above cannot see it, yet the two robots pass through each
+            # other. This is the classic MAPF edge conflict, and it is exactly
+            # what simulation/referee.py's swap rule flags as a collision.
+            occupant_ahead = reservation.get((nx, ny, ct))
+            if occupant_ahead is not None and reservation.get((cx, cy, next_tick)) == occupant_ahead:
+                continue
 
             new_g = g + 1
             state = (nx, ny, next_tick)

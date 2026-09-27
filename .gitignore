@@ -50,6 +50,16 @@ secrets/
 *.key
 *.crt
 
+# ── Generated benchmark output (simulation/benchmarks/benchmark.py) ──────────
+# Reproducible from source in ~17-25 minutes (python -m simulation.benchmarks.benchmark)
+# — raw run data/reports are generated artifacts, not something to keep in Git.
+# Covers benchmark_results/ and every ad-hoc variant produced during development
+# (benchmark_results_dropcell/, benchmark_results_final/, etc.).
+benchmark_results/
+benchmark_results_*/
+benchmark_run.log
+tmp_step12_targeted/
+
 # ── IDE / OS ─────────────────────────────────────────────────────────────────
 .idea/
 .vscode/
@@ -59,3 +69,12 @@ secrets/
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# ── Local-only project files (never pushed) ───────────────────────────────────
+CLAUDE.md
+sih_presentation_package/
+WINNER PPT/
+
+# ── Office documents (never tracked repo-wide unless explicitly requested) ────
+*.ppt
+*.pptx

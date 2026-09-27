@@ -15,7 +15,9 @@ class ConflictDetector:
     """Detects conflicts between a robot's planned path and peers' broadcast intents.
 
     Conflict types detected (per docs/00_SHARED_CONTRACTS.md):
-        SAME_CELL         — two robots planning to occupy the same cell at the same tick
+        SAME_CELL         — two robots planning to occupy the same cell at the same tick,
+                            OR one robot planning to enter a cell a stationary peer is
+                            currently sitting in (see _check_stationary_occupancy)
         CROSSING          — two robots' paths cross each other within the window
         NARROW_AISLE_HEADON — two robots approaching each other in a single-file aisle
 
@@ -53,6 +55,26 @@ class ConflictDetector:
             peer_path_raw = peer.get("plannedPath") or []
             peer_ts = peer.get("timestamp", own_state.timestamp)
             peer_wps = self._extract_waypoints(peer_path_raw, peer_ts)
+
+            # 0. Stationary occupancy — a peer that is not moving still
+            #    physically occupies its current cell, and that cell appears
+            #    in NO field the path-based checks below look at: a robot
+            #    pops each waypoint off currentPath as it enters it, so the
+            #    cell it is standing in is never part of its own broadcast
+            #    plannedPath. Deliberately evaluated BEFORE the empty-path
+            #    early-exit, because a parked/IDLE peer broadcasts an empty
+            #    plannedPath and would otherwise be skipped entirely.
+            occupancy_conflict = self._check_stationary_occupancy(
+                own_state.robotId,
+                peer_id,
+                own_wps,
+                peer.get("position"),
+                peer.get("status"),
+                peer_wps,
+            )
+            if occupancy_conflict:
+                candidates.append(occupancy_conflict)
+
             if not peer_wps:
                 continue
 
@@ -109,6 +131,71 @@ class ConflictDetector:
                 t = wp[2] if len(wp) >= 3 and wp[2] is not None else (base_tick + i + 1)
                 result.append((x, y, t))
         return result
+
+    # Statuses that mean "this robot is not going to vacate its cell this
+    # tick". OFFLINE is deliberately NOT listed: detect() skips OFFLINE peers
+    # entirely (a documented decision — see test_ignore_offline_peer), and
+    # physical safety around a dead robot is enforced by RobotAgent's movement
+    # guard instead, not by conflict negotiation.
+    _STATIONARY_STATUSES = frozenset({"WAITING", "BLOCKED", "IDLE", "CHARGING"})
+
+    @staticmethod
+    def _coords_of(pos_raw) -> tuple[int, int] | None:
+        """Normalize a Position / dict / (x, y) tuple into (x, y), or None."""
+        if pos_raw is None:
+            return None
+        if isinstance(pos_raw, Position):
+            return (pos_raw.x, pos_raw.y)
+        if isinstance(pos_raw, dict):
+            x, y = pos_raw.get("x"), pos_raw.get("y")
+            return (x, y) if x is not None and y is not None else None
+        if isinstance(pos_raw, (tuple, list)) and len(pos_raw) >= 2:
+            return (pos_raw[0], pos_raw[1])
+        return None
+
+    def _check_stationary_occupancy(
+        self,
+        own_id: str,
+        peer_id: str,
+        own_wps: list[tuple[int, int, int]],
+        peer_pos_raw,
+        peer_status: str | None,
+        peer_wps: list[tuple[int, int, int]],
+    ) -> Conflict | None:
+        """Detect driving into a cell a stationary peer is already sitting in.
+
+        The path-based checks compare planned waypoints against planned
+        waypoints. That is blind to a peer which has stopped: its occupied
+        cell was popped off its own path when it arrived, so it is absent
+        from its broadcast plannedPath, and its remaining waypoints keep
+        their original (now stale) tick stamps while it stalls. A robot
+        whose route passes through that cell therefore saw no conflict and
+        drove straight into the stationary robot — a real, referee-verified
+        collision (reproduced by scenarios d_deadlock and g_high_load).
+
+        A peer counts as stationary when its status says it is not moving,
+        or when it has no planned path left at all (parked at its goal).
+        """
+        peer_cell = self._coords_of(peer_pos_raw)
+        if peer_cell is None:
+            return None
+
+        is_stationary = (peer_status in self._STATIONARY_STATUSES) or not peer_wps
+        if not is_stationary:
+            return None
+
+        for (x, y, t) in own_wps:
+            if (x, y) == peer_cell:
+                return Conflict(
+                    conflictId=f"conf_occupied_{own_id}_{peer_id}_{t}",
+                    robotIds=[own_id, peer_id],
+                    type="SAME_CELL",
+                    predictedCell=Position(x=x, y=y, tick=t),
+                    predictedTick=t,
+                    severity="HIGH",
+                    resolutionAction=None,
+                )
+        return None
 
     def _check_same_cell(
         self,

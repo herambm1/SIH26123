@@ -11,8 +11,13 @@
 # Usage:
 #   docker-compose up
 #
-# NOTE: Dockerfiles for each service are Member 6's implementation responsibility.
-# This file is a structural placeholder defining service names and ports.
+# NOTE on the simulation Dockerfile's location: the original placeholder here
+# pointed at simulation/Dockerfile, but simulation/ is outside Member 6's
+# ownership boundary for this task (must-not-modify). Rather than add a file
+# inside another member's directory, the Dockerfile lives at
+# docker/simulation.Dockerfile (new, Member-6-owned directory) and is built
+# with the repo root as context — it only COPYs simulation/ (and its sibling
+# packages), it does not change anything inside it.
 
 version: "3.9"
 
@@ -20,7 +25,7 @@ services:
   simulation:
     build:
       context: .
-      dockerfile: simulation/Dockerfile      # Member 6 to create
+      dockerfile: docker/simulation.Dockerfile
     ports:
       - "8001:8001"
     environment:
@@ -30,7 +35,7 @@ services:
   backend:
     build:
       context: ./backend
-      dockerfile: Dockerfile                 # Member 6 to create
+      dockerfile: Dockerfile
     ports:
       - "8080:8080"
     environment:

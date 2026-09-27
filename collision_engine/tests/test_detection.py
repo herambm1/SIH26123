@@ -156,5 +156,137 @@ class TestConflictDetector(unittest.TestCase):
         self.assertIsNone(conflict)
 
 
+class TestStationaryPeerOccupancy(unittest.TestCase):
+    """Regression tests for the referee-verified collisions found by the
+    benchmark in scenarios d_deadlock and g_high_load: a robot drove straight
+    into a peer that had stopped moving.
+
+    A stopped robot pops its current cell off currentPath when it arrives
+    there, so that cell appears in NO planned path and the path-vs-path
+    checks were structurally blind to it.
+    """
+
+    def setUp(self):
+        self.detector = ConflictDetector()
+
+    def _own(self, robot_id="R1", x=10, y=9):
+        return RobotState(
+            robotId=robot_id, position=Position(x=x, y=y), velocity=1.0, battery=100.0,
+            currentTaskId="t1", destination=Position(x=x + 2, y=y), currentPath=[],
+            status="MOVING", timestamp=3,
+        )
+
+    def test_waiting_peer_standing_on_our_next_cell_is_detected(self):
+        """Reproduces d_deadlock: R2 sits WAITING at (11,9) with a stale path
+        pointing elsewhere; R1's next waypoint is (11,9)."""
+        own_state = self._own()
+        own_path = RobotPath(
+            robotId="R1",
+            waypoints=[Position(x=11, y=9, tick=3), Position(x=12, y=9, tick=4)],
+            generatedAtTick=2, version=1,
+        )
+        peer_intents = [{
+            "robotId": "R2",
+            "position": {"x": 11, "y": 9, "tick": None},   # where R2 actually is
+            "plannedPath": [{"x": 10, "y": 9, "tick": 2}],  # stale, and NOT its own cell
+            "status": "WAITING",
+            "priority": 1,
+            "timestamp": 2,
+        }]
+
+        conflict = self.detector.detect(own_state, own_path, peer_intents)
+
+        self.assertIsNotNone(conflict, "stationary peer on our path must raise a conflict")
+        self.assertEqual(conflict.type, "SAME_CELL")
+        self.assertEqual((conflict.predictedCell.x, conflict.predictedCell.y), (11, 9))
+        self.assertCountEqual(conflict.robotIds, ["R1", "R2"])
+
+    def test_parked_peer_with_empty_path_is_detected(self):
+        """Reproduces g_high_load: a peer parked at its goal broadcasts an
+        EMPTY plannedPath, which used to skip that peer entirely."""
+        own_state = self._own()
+        own_path = RobotPath(
+            robotId="R1",
+            waypoints=[Position(x=11, y=9, tick=3), Position(x=12, y=9, tick=4)],
+            generatedAtTick=2, version=1,
+        )
+        peer_intents = [{
+            "robotId": "R2",
+            "position": {"x": 12, "y": 9, "tick": None},
+            "plannedPath": [],           # parked — nothing planned at all
+            "status": "IDLE",
+            "priority": 1,
+            "timestamp": 2,
+        }]
+
+        conflict = self.detector.detect(own_state, own_path, peer_intents)
+
+        self.assertIsNotNone(conflict, "peer parked on our path must raise a conflict")
+        self.assertEqual(conflict.type, "SAME_CELL")
+        self.assertEqual((conflict.predictedCell.x, conflict.predictedCell.y), (12, 9))
+
+    def test_moving_peer_on_our_path_is_not_flagged_as_occupancy(self):
+        """A peer that is MOVING will vacate — flagging it would make every
+        robot refuse to follow another down a corridor."""
+        own_state = self._own()
+        own_path = RobotPath(
+            robotId="R1",
+            waypoints=[Position(x=11, y=9, tick=3)],
+            generatedAtTick=2, version=1,
+        )
+        peer_intents = [{
+            "robotId": "R2",
+            "position": {"x": 11, "y": 9, "tick": None},
+            "plannedPath": [{"x": 11, "y": 8, "tick": 3}],  # moving away
+            "status": "MOVING",
+            "priority": 1,
+            "timestamp": 2,
+        }]
+
+        conflict = self.detector.detect(own_state, own_path, peer_intents)
+        self.assertIsNone(conflict)
+
+    def test_stationary_peer_not_on_our_path_is_not_flagged(self):
+        own_state = self._own()
+        own_path = RobotPath(
+            robotId="R1",
+            waypoints=[Position(x=11, y=9, tick=3)],
+            generatedAtTick=2, version=1,
+        )
+        peer_intents = [{
+            "robotId": "R2",
+            "position": {"x": 4, "y": 2, "tick": None},   # nowhere near us
+            "plannedPath": [],
+            "status": "IDLE",
+            "priority": 1,
+            "timestamp": 2,
+        }]
+
+        conflict = self.detector.detect(own_state, own_path, peer_intents)
+        self.assertIsNone(conflict)
+
+    def test_offline_peer_still_ignored_by_negotiation(self):
+        """detect() deliberately keeps ignoring OFFLINE peers — physical
+        safety around a dead robot is RobotAgent's movement guard's job, not
+        conflict negotiation's."""
+        own_state = self._own()
+        own_path = RobotPath(
+            robotId="R1",
+            waypoints=[Position(x=11, y=9, tick=3)],
+            generatedAtTick=2, version=1,
+        )
+        peer_intents = [{
+            "robotId": "R2",
+            "position": {"x": 11, "y": 9, "tick": None},
+            "plannedPath": [],
+            "status": "OFFLINE",
+            "priority": 1,
+            "timestamp": 2,
+        }]
+
+        conflict = self.detector.detect(own_state, own_path, peer_intents)
+        self.assertIsNone(conflict)
+
+
 if __name__ == "__main__":
     unittest.main()

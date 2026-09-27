@@ -33,14 +33,21 @@ class HeartbeatMonitor:
     def record(self, robot_id: str, telemetry: "Telemetry | None") -> None:
         """Record one tick's reading for a robot.
 
-        telemetry=None means a dropped/missing reading this tick.
-        A reading with sensorHealth=DEGRADED or sensorHealth=OFFLINE counts
-        toward the miss threshold.
+        telemetry=None means a dropped/missing reading this tick — counts
+        toward the miss threshold, as does an explicit sensorHealth=OFFLINE
+        report. A sensorHealth=DEGRADED reading does NOT count as a miss: the
+        robot IS still reporting in (a heartbeat was received), the reading is
+        just noisy/imprecise — noise and dropout are independent fault modes
+        (see edge/fault_injection.py), so a present-but-noisy reading resets
+        the miss streak exactly like an OK reading rather than accumulating
+        toward OFFLINE. (Fixed: previously DEGRADED was treated the same as a
+        dropped reading, so any nonzero noise_std alone — with no dropout and
+        no offline_after_tick — would eventually force a robot OFFLINE.)
 
         Implementation: Member 5's responsibility.
         """
         health = None if telemetry is None else telemetry.sensorHealth
-        if health is None or health in {"DEGRADED", "OFFLINE"}:
+        if health is None or health == "OFFLINE":
             self._misses_by_robot[robot_id] = self._misses_by_robot.get(robot_id, 0) + 1
         else:
             self._misses_by_robot[robot_id] = 0

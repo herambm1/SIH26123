@@ -1,0 +1,6856 @@
+{
+  "perScenarioAggregate": {
+    "b_intersection": {
+      "runs": 10,
+      "meanMovingTicksPerRobotPerRun": 16.0,
+      "meanIdealTicksPerRobotPerRun": 16.0,
+      "meanDetourExtraTicksPerRobotPerRun": 0.0,
+      "meanDeadlockRecoveryTicksPerRobotPerRun": 0.0,
+      "waitBucketTotals": {
+        "conflict_wait": 30
+      },
+      "meanWaitBucketsPerRun": {
+        "conflict_wait": 3.0
+      },
+      "totalReplanTriggers": 0,
+      "unnecessaryReplanTriggers": 0,
+      "unnecessaryReplanRate": 0.0,
+      "totalYieldVerdicts": 30,
+      "yieldEventsWithBothCosts": 30,
+      "yieldsWhereYielderHadLowerRemainingCost": 0,
+      "wrongRobotYieldRate": 0.0
+    },
+    "c_narrow_aisle": {
+      "runs": 10,
+      "meanMovingTicksPerRobotPerRun": 18.0,
+      "meanIdealTicksPerRobotPerRun": 16.0,
+      "meanDetourExtraTicksPerRobotPerRun": 2.0,
+      "meanDeadlockRecoveryTicksPerRobotPerRun": 0.0,
+      "waitBucketTotals": {
+        "conflict_wait": 40
+      },
+      "meanWaitBucketsPerRun": {
+        "conflict_wait": 4.0
+      },
+      "totalReplanTriggers": 10,
+      "unnecessaryReplanTriggers": 0,
+      "unnecessaryReplanRate": 0.0,
+      "totalYieldVerdicts": 40,
+      "yieldEventsWithBothCosts": 40,
+      "yieldsWhereYielderHadLowerRemainingCost": 0,
+      "wrongRobotYieldRate": 0.0
+    },
+    "d_deadlock": {
+      "runs": 10,
+      "meanMovingTicksPerRobotPerRun": 10.0,
+      "meanIdealTicksPerRobotPerRun": 8.0,
+      "meanDetourExtraTicksPerRobotPerRun": 2.0,
+      "meanDeadlockRecoveryTicksPerRobotPerRun": 2.0,
+      "waitBucketTotals": {
+        "conflict_wait": 110,
+        "residual_wait": 10
+      },
+      "meanWaitBucketsPerRun": {
+        "conflict_wait": 11.0,
+        "residual_wait": 1.0
+      },
+      "totalReplanTriggers": 10,
+      "unnecessaryReplanTriggers": 0,
+      "unnecessaryReplanRate": 0.0,
+      "totalYieldVerdicts": 50,
+      "yieldEventsWithBothCosts": 50,
+      "yieldsWhereYielderHadLowerRemainingCost": 0,
+      "wrongRobotYieldRate": 0.0
+    },
+    "g_high_load": {
+      "runs": 10,
+      "meanMovingTicksPerRobotPerRun": 96.0,
+      "meanIdealTicksPerRobotPerRun": 90.0,
+      "meanDetourExtraTicksPerRobotPerRun": 6.0,
+      "meanDeadlockRecoveryTicksPerRobotPerRun": 4.0,
+      "waitBucketTotals": {
+        "conflict_wait": 290
+      },
+      "meanWaitBucketsPerRun": {
+        "conflict_wait": 29.0
+      },
+      "totalReplanTriggers": 60,
+      "unnecessaryReplanTriggers": 40,
+      "unnecessaryReplanRate": 0.6666666666666666,
+      "totalYieldVerdicts": 260,
+      "yieldEventsWithBothCosts": 260,
+      "yieldsWhereYielderHadLowerRemainingCost": 0,
+      "wrongRobotYieldRate": 0.0
+    }
+  },
+  "rawRuns": {
+    "b_intersection": [
+      {
+        "scenarioId": "b_intersection",
+        "seed": 1,
+        "completed": true,
+        "finalTick": 11,
+        "perRobot": {
+          "R1": {
+            "reachedDestination": true,
+            "arrivalTick": 8,
+            "totalTicksObserved": 8,
+            "movingTicks": 8,
+            "idealTicks": 8,
+            "detourExtraTicks": 0,
+            "waitBuckets": {},
+            "deadlockRecoveryTicks": 0
+          },
+          "R2": {
+            "reachedDestination": true,
+            "arrivalTick": 11,
+            "totalTicksObserved": 11,
+            "movingTicks": 8,
+            "idealTicks": 8,
+            "detourExtraTicks": 0,
+            "waitBuckets": {
+              "conflict_wait": 3
+            },
+            "deadlockRecoveryTicks": 0
+          }
+        },
+        "totalReplanTriggers": 0,
+        "unnecessaryReplanTriggers": 0,
+        "replanEvents": [],
+        "totalYieldVerdicts": 3,
+        "yieldVerdictsByRobot": {
+          "R2": 3
+        },
+        "yieldEvents": [
+          {
+            "tick": 1,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 8,
+            "peer_remaining": 7,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 2,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 8,
+            "peer_remaining": 6,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 3,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 8,
+            "peer_remaining": 5,
+            "conflict_type": "SAME_CELL"
+          }
+        ],
+        "resetOnlyDeadlockEvents": [],
+        "plannerCallsDuringRun": 0,
+        "collisionCount": 0,
+        "deadlockCount": 0
+      },
+      {
+        "scenarioId": "b_intersection",
+        "seed": 2,
+        "completed": true,
+        "finalTick": 11,
+        "perRobot": {
+          "R1": {
+            "reachedDestination": true,
+            "arrivalTick": 8,
+            "totalTicksObserved": 8,
+            "movingTicks": 8,
+            "idealTicks": 8,
+            "detourExtraTicks": 0,
+            "waitBuckets": {},
+            "deadlockRecoveryTicks": 0
+          },
+          "R2": {
+            "reachedDestination": true,
+            "arrivalTick": 11,
+            "totalTicksObserved": 11,
+            "movingTicks": 8,
+            "idealTicks": 8,
+            "detourExtraTicks": 0,
+            "waitBuckets": {
+              "conflict_wait": 3
+            },
+            "deadlockRecoveryTicks": 0
+          }
+        },
+        "totalReplanTriggers": 0,
+        "unnecessaryReplanTriggers": 0,
+        "replanEvents": [],
+        "totalYieldVerdicts": 3,
+        "yieldVerdictsByRobot": {
+          "R2": 3
+        },
+        "yieldEvents": [
+          {
+            "tick": 1,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 8,
+            "peer_remaining": 7,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 2,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 8,
+            "peer_remaining": 6,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 3,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 8,
+            "peer_remaining": 5,
+            "conflict_type": "SAME_CELL"
+          }
+        ],
+        "resetOnlyDeadlockEvents": [],
+        "plannerCallsDuringRun": 0,
+        "collisionCount": 0,
+        "deadlockCount": 0
+      },
+      {
+        "scenarioId": "b_intersection",
+        "seed": 3,
+        "completed": true,
+        "finalTick": 11,
+        "perRobot": {
+          "R1": {
+            "reachedDestination": true,
+            "arrivalTick": 8,
+            "totalTicksObserved": 8,
+            "movingTicks": 8,
+            "idealTicks": 8,
+            "detourExtraTicks": 0,
+            "waitBuckets": {},
+            "deadlockRecoveryTicks": 0
+          },
+          "R2": {
+            "reachedDestination": true,
+            "arrivalTick": 11,
+            "totalTicksObserved": 11,
+            "movingTicks": 8,
+            "idealTicks": 8,
+            "detourExtraTicks": 0,
+            "waitBuckets": {
+              "conflict_wait": 3
+            },
+            "deadlockRecoveryTicks": 0
+          }
+        },
+        "totalReplanTriggers": 0,
+        "unnecessaryReplanTriggers": 0,
+        "replanEvents": [],
+        "totalYieldVerdicts": 3,
+        "yieldVerdictsByRobot": {
+          "R2": 3
+        },
+        "yieldEvents": [
+          {
+            "tick": 1,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 8,
+            "peer_remaining": 7,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 2,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 8,
+            "peer_remaining": 6,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 3,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 8,
+            "peer_remaining": 5,
+            "conflict_type": "SAME_CELL"
+          }
+        ],
+        "resetOnlyDeadlockEvents": [],
+        "plannerCallsDuringRun": 0,
+        "collisionCount": 0,
+        "deadlockCount": 0
+      },
+      {
+        "scenarioId": "b_intersection",
+        "seed": 4,
+        "completed": true,
+        "finalTick": 11,
+        "perRobot": {
+          "R1": {
+            "reachedDestination": true,
+            "arrivalTick": 8,
+            "totalTicksObserved": 8,
+            "movingTicks": 8,
+            "idealTicks": 8,
+            "detourExtraTicks": 0,
+            "waitBuckets": {},
+            "deadlockRecoveryTicks": 0
+          },
+          "R2": {
+            "reachedDestination": true,
+            "arrivalTick": 11,
+            "totalTicksObserved": 11,
+            "movingTicks": 8,
+            "idealTicks": 8,
+            "detourExtraTicks": 0,
+            "waitBuckets": {
+              "conflict_wait": 3
+            },
+            "deadlockRecoveryTicks": 0
+          }
+        },
+        "totalReplanTriggers": 0,
+        "unnecessaryReplanTriggers": 0,
+        "replanEvents": [],
+        "totalYieldVerdicts": 3,
+        "yieldVerdictsByRobot": {
+          "R2": 3
+        },
+        "yieldEvents": [
+          {
+            "tick": 1,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 8,
+            "peer_remaining": 7,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 2,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 8,
+            "peer_remaining": 6,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 3,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 8,
+            "peer_remaining": 5,
+            "conflict_type": "SAME_CELL"
+          }
+        ],
+        "resetOnlyDeadlockEvents": [],
+        "plannerCallsDuringRun": 0,
+        "collisionCount": 0,
+        "deadlockCount": 0
+      },
+      {
+        "scenarioId": "b_intersection",
+        "seed": 5,
+        "completed": true,
+        "finalTick": 11,
+        "perRobot": {
+          "R1": {
+            "reachedDestination": true,
+            "arrivalTick": 8,
+            "totalTicksObserved": 8,
+            "movingTicks": 8,
+            "idealTicks": 8,
+            "detourExtraTicks": 0,
+            "waitBuckets": {},
+            "deadlockRecoveryTicks": 0
+          },
+          "R2": {
+            "reachedDestination": true,
+            "arrivalTick": 11,
+            "totalTicksObserved": 11,
+            "movingTicks": 8,
+            "idealTicks": 8,
+            "detourExtraTicks": 0,
+            "waitBuckets": {
+              "conflict_wait": 3
+            },
+            "deadlockRecoveryTicks": 0
+          }
+        },
+        "totalReplanTriggers": 0,
+        "unnecessaryReplanTriggers": 0,
+        "replanEvents": [],
+        "totalYieldVerdicts": 3,
+        "yieldVerdictsByRobot": {
+          "R2": 3
+        },
+        "yieldEvents": [
+          {
+            "tick": 1,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 8,
+            "peer_remaining": 7,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 2,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 8,
+            "peer_remaining": 6,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 3,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 8,
+            "peer_remaining": 5,
+            "conflict_type": "SAME_CELL"
+          }
+        ],
+        "resetOnlyDeadlockEvents": [],
+        "plannerCallsDuringRun": 0,
+        "collisionCount": 0,
+        "deadlockCount": 0
+      },
+      {
+        "scenarioId": "b_intersection",
+        "seed": 6,
+        "completed": true,
+        "finalTick": 11,
+        "perRobot": {
+          "R1": {
+            "reachedDestination": true,
+            "arrivalTick": 8,
+            "totalTicksObserved": 8,
+            "movingTicks": 8,
+            "idealTicks": 8,
+            "detourExtraTicks": 0,
+            "waitBuckets": {},
+            "deadlockRecoveryTicks": 0
+          },
+          "R2": {
+            "reachedDestination": true,
+            "arrivalTick": 11,
+            "totalTicksObserved": 11,
+            "movingTicks": 8,
+            "idealTicks": 8,
+            "detourExtraTicks": 0,
+            "waitBuckets": {
+              "conflict_wait": 3
+            },
+            "deadlockRecoveryTicks": 0
+          }
+        },
+        "totalReplanTriggers": 0,
+        "unnecessaryReplanTriggers": 0,
+        "replanEvents": [],
+        "totalYieldVerdicts": 3,
+        "yieldVerdictsByRobot": {
+          "R2": 3
+        },
+        "yieldEvents": [
+          {
+            "tick": 1,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 8,
+            "peer_remaining": 7,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 2,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 8,
+            "peer_remaining": 6,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 3,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 8,
+            "peer_remaining": 5,
+            "conflict_type": "SAME_CELL"
+          }
+        ],
+        "resetOnlyDeadlockEvents": [],
+        "plannerCallsDuringRun": 0,
+        "collisionCount": 0,
+        "deadlockCount": 0
+      },
+      {
+        "scenarioId": "b_intersection",
+        "seed": 7,
+        "completed": true,
+        "finalTick": 11,
+        "perRobot": {
+          "R1": {
+            "reachedDestination": true,
+            "arrivalTick": 8,
+            "totalTicksObserved": 8,
+            "movingTicks": 8,
+            "idealTicks": 8,
+            "detourExtraTicks": 0,
+            "waitBuckets": {},
+            "deadlockRecoveryTicks": 0
+          },
+          "R2": {
+            "reachedDestination": true,
+            "arrivalTick": 11,
+            "totalTicksObserved": 11,
+            "movingTicks": 8,
+            "idealTicks": 8,
+            "detourExtraTicks": 0,
+            "waitBuckets": {
+              "conflict_wait": 3
+            },
+            "deadlockRecoveryTicks": 0
+          }
+        },
+        "totalReplanTriggers": 0,
+        "unnecessaryReplanTriggers": 0,
+        "replanEvents": [],
+        "totalYieldVerdicts": 3,
+        "yieldVerdictsByRobot": {
+          "R2": 3
+        },
+        "yieldEvents": [
+          {
+            "tick": 1,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 8,
+            "peer_remaining": 7,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 2,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 8,
+            "peer_remaining": 6,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 3,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 8,
+            "peer_remaining": 5,
+            "conflict_type": "SAME_CELL"
+          }
+        ],
+        "resetOnlyDeadlockEvents": [],
+        "plannerCallsDuringRun": 0,
+        "collisionCount": 0,
+        "deadlockCount": 0
+      },
+      {
+        "scenarioId": "b_intersection",
+        "seed": 8,
+        "completed": true,
+        "finalTick": 11,
+        "perRobot": {
+          "R1": {
+            "reachedDestination": true,
+            "arrivalTick": 8,
+            "totalTicksObserved": 8,
+            "movingTicks": 8,
+            "idealTicks": 8,
+            "detourExtraTicks": 0,
+            "waitBuckets": {},
+            "deadlockRecoveryTicks": 0
+          },
+          "R2": {
+            "reachedDestination": true,
+            "arrivalTick": 11,
+            "totalTicksObserved": 11,
+            "movingTicks": 8,
+            "idealTicks": 8,
+            "detourExtraTicks": 0,
+            "waitBuckets": {
+              "conflict_wait": 3
+            },
+            "deadlockRecoveryTicks": 0
+          }
+        },
+        "totalReplanTriggers": 0,
+        "unnecessaryReplanTriggers": 0,
+        "replanEvents": [],
+        "totalYieldVerdicts": 3,
+        "yieldVerdictsByRobot": {
+          "R2": 3
+        },
+        "yieldEvents": [
+          {
+            "tick": 1,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 8,
+            "peer_remaining": 7,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 2,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 8,
+            "peer_remaining": 6,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 3,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 8,
+            "peer_remaining": 5,
+            "conflict_type": "SAME_CELL"
+          }
+        ],
+        "resetOnlyDeadlockEvents": [],
+        "plannerCallsDuringRun": 0,
+        "collisionCount": 0,
+        "deadlockCount": 0
+      },
+      {
+        "scenarioId": "b_intersection",
+        "seed": 9,
+        "completed": true,
+        "finalTick": 11,
+        "perRobot": {
+          "R1": {
+            "reachedDestination": true,
+            "arrivalTick": 8,
+            "totalTicksObserved": 8,
+            "movingTicks": 8,
+            "idealTicks": 8,
+            "detourExtraTicks": 0,
+            "waitBuckets": {},
+            "deadlockRecoveryTicks": 0
+          },
+          "R2": {
+            "reachedDestination": true,
+            "arrivalTick": 11,
+            "totalTicksObserved": 11,
+            "movingTicks": 8,
+            "idealTicks": 8,
+            "detourExtraTicks": 0,
+            "waitBuckets": {
+              "conflict_wait": 3
+            },
+            "deadlockRecoveryTicks": 0
+          }
+        },
+        "totalReplanTriggers": 0,
+        "unnecessaryReplanTriggers": 0,
+        "replanEvents": [],
+        "totalYieldVerdicts": 3,
+        "yieldVerdictsByRobot": {
+          "R2": 3
+        },
+        "yieldEvents": [
+          {
+            "tick": 1,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 8,
+            "peer_remaining": 7,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 2,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 8,
+            "peer_remaining": 6,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 3,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 8,
+            "peer_remaining": 5,
+            "conflict_type": "SAME_CELL"
+          }
+        ],
+        "resetOnlyDeadlockEvents": [],
+        "plannerCallsDuringRun": 0,
+        "collisionCount": 0,
+        "deadlockCount": 0
+      },
+      {
+        "scenarioId": "b_intersection",
+        "seed": 10,
+        "completed": true,
+        "finalTick": 11,
+        "perRobot": {
+          "R1": {
+            "reachedDestination": true,
+            "arrivalTick": 8,
+            "totalTicksObserved": 8,
+            "movingTicks": 8,
+            "idealTicks": 8,
+            "detourExtraTicks": 0,
+            "waitBuckets": {},
+            "deadlockRecoveryTicks": 0
+          },
+          "R2": {
+            "reachedDestination": true,
+            "arrivalTick": 11,
+            "totalTicksObserved": 11,
+            "movingTicks": 8,
+            "idealTicks": 8,
+            "detourExtraTicks": 0,
+            "waitBuckets": {
+              "conflict_wait": 3
+            },
+            "deadlockRecoveryTicks": 0
+          }
+        },
+        "totalReplanTriggers": 0,
+        "unnecessaryReplanTriggers": 0,
+        "replanEvents": [],
+        "totalYieldVerdicts": 3,
+        "yieldVerdictsByRobot": {
+          "R2": 3
+        },
+        "yieldEvents": [
+          {
+            "tick": 1,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 8,
+            "peer_remaining": 7,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 2,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 8,
+            "peer_remaining": 6,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 3,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 8,
+            "peer_remaining": 5,
+            "conflict_type": "SAME_CELL"
+          }
+        ],
+        "resetOnlyDeadlockEvents": [],
+        "plannerCallsDuringRun": 0,
+        "collisionCount": 0,
+        "deadlockCount": 0
+      }
+    ],
+    "c_narrow_aisle": [
+      {
+        "scenarioId": "c_narrow_aisle",
+        "seed": 1,
+        "completed": true,
+        "finalTick": 14,
+        "perRobot": {
+          "R1": {
+            "reachedDestination": true,
+            "arrivalTick": 8,
+            "totalTicksObserved": 8,
+            "movingTicks": 8,
+            "idealTicks": 8,
+            "detourExtraTicks": 0,
+            "waitBuckets": {},
+            "deadlockRecoveryTicks": 0
+          },
+          "R2": {
+            "reachedDestination": true,
+            "arrivalTick": 14,
+            "totalTicksObserved": 14,
+            "movingTicks": 10,
+            "idealTicks": 8,
+            "detourExtraTicks": 2,
+            "waitBuckets": {
+              "conflict_wait": 4
+            },
+            "deadlockRecoveryTicks": 0
+          }
+        },
+        "totalReplanTriggers": 1,
+        "unnecessaryReplanTriggers": 0,
+        "replanEvents": [
+          {
+            "tick": 4,
+            "robot_id": "R2",
+            "trigger": "yield",
+            "avoided_cell": [
+              11,
+              9
+            ],
+            "peer_id": "R1",
+            "predicted_tick": 7,
+            "foundUnnecessary": false
+          }
+        ],
+        "totalYieldVerdicts": 4,
+        "yieldVerdictsByRobot": {
+          "R2": 4
+        },
+        "yieldEvents": [
+          {
+            "tick": 1,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 8,
+            "peer_remaining": 7,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 2,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 8,
+            "peer_remaining": 6,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 3,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 8,
+            "peer_remaining": 5,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 4,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "YIELD",
+            "own_remaining": 8,
+            "peer_remaining": 4,
+            "conflict_type": "NARROW_AISLE_HEADON"
+          }
+        ],
+        "resetOnlyDeadlockEvents": [],
+        "plannerCallsDuringRun": 1,
+        "collisionCount": 0,
+        "deadlockCount": 0
+      },
+      {
+        "scenarioId": "c_narrow_aisle",
+        "seed": 2,
+        "completed": true,
+        "finalTick": 14,
+        "perRobot": {
+          "R1": {
+            "reachedDestination": true,
+            "arrivalTick": 8,
+            "totalTicksObserved": 8,
+            "movingTicks": 8,
+            "idealTicks": 8,
+            "detourExtraTicks": 0,
+            "waitBuckets": {},
+            "deadlockRecoveryTicks": 0
+          },
+          "R2": {
+            "reachedDestination": true,
+            "arrivalTick": 14,
+            "totalTicksObserved": 14,
+            "movingTicks": 10,
+            "idealTicks": 8,
+            "detourExtraTicks": 2,
+            "waitBuckets": {
+              "conflict_wait": 4
+            },
+            "deadlockRecoveryTicks": 0
+          }
+        },
+        "totalReplanTriggers": 1,
+        "unnecessaryReplanTriggers": 0,
+        "replanEvents": [
+          {
+            "tick": 4,
+            "robot_id": "R2",
+            "trigger": "yield",
+            "avoided_cell": [
+              11,
+              9
+            ],
+            "peer_id": "R1",
+            "predicted_tick": 7,
+            "foundUnnecessary": false
+          }
+        ],
+        "totalYieldVerdicts": 4,
+        "yieldVerdictsByRobot": {
+          "R2": 4
+        },
+        "yieldEvents": [
+          {
+            "tick": 1,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 8,
+            "peer_remaining": 7,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 2,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 8,
+            "peer_remaining": 6,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 3,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 8,
+            "peer_remaining": 5,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 4,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "YIELD",
+            "own_remaining": 8,
+            "peer_remaining": 4,
+            "conflict_type": "NARROW_AISLE_HEADON"
+          }
+        ],
+        "resetOnlyDeadlockEvents": [],
+        "plannerCallsDuringRun": 1,
+        "collisionCount": 0,
+        "deadlockCount": 0
+      },
+      {
+        "scenarioId": "c_narrow_aisle",
+        "seed": 3,
+        "completed": true,
+        "finalTick": 14,
+        "perRobot": {
+          "R1": {
+            "reachedDestination": true,
+            "arrivalTick": 8,
+            "totalTicksObserved": 8,
+            "movingTicks": 8,
+            "idealTicks": 8,
+            "detourExtraTicks": 0,
+            "waitBuckets": {},
+            "deadlockRecoveryTicks": 0
+          },
+          "R2": {
+            "reachedDestination": true,
+            "arrivalTick": 14,
+            "totalTicksObserved": 14,
+            "movingTicks": 10,
+            "idealTicks": 8,
+            "detourExtraTicks": 2,
+            "waitBuckets": {
+              "conflict_wait": 4
+            },
+            "deadlockRecoveryTicks": 0
+          }
+        },
+        "totalReplanTriggers": 1,
+        "unnecessaryReplanTriggers": 0,
+        "replanEvents": [
+          {
+            "tick": 4,
+            "robot_id": "R2",
+            "trigger": "yield",
+            "avoided_cell": [
+              11,
+              9
+            ],
+            "peer_id": "R1",
+            "predicted_tick": 7,
+            "foundUnnecessary": false
+          }
+        ],
+        "totalYieldVerdicts": 4,
+        "yieldVerdictsByRobot": {
+          "R2": 4
+        },
+        "yieldEvents": [
+          {
+            "tick": 1,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 8,
+            "peer_remaining": 7,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 2,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 8,
+            "peer_remaining": 6,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 3,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 8,
+            "peer_remaining": 5,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 4,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "YIELD",
+            "own_remaining": 8,
+            "peer_remaining": 4,
+            "conflict_type": "NARROW_AISLE_HEADON"
+          }
+        ],
+        "resetOnlyDeadlockEvents": [],
+        "plannerCallsDuringRun": 1,
+        "collisionCount": 0,
+        "deadlockCount": 0
+      },
+      {
+        "scenarioId": "c_narrow_aisle",
+        "seed": 4,
+        "completed": true,
+        "finalTick": 14,
+        "perRobot": {
+          "R1": {
+            "reachedDestination": true,
+            "arrivalTick": 8,
+            "totalTicksObserved": 8,
+            "movingTicks": 8,
+            "idealTicks": 8,
+            "detourExtraTicks": 0,
+            "waitBuckets": {},
+            "deadlockRecoveryTicks": 0
+          },
+          "R2": {
+            "reachedDestination": true,
+            "arrivalTick": 14,
+            "totalTicksObserved": 14,
+            "movingTicks": 10,
+            "idealTicks": 8,
+            "detourExtraTicks": 2,
+            "waitBuckets": {
+              "conflict_wait": 4
+            },
+            "deadlockRecoveryTicks": 0
+          }
+        },
+        "totalReplanTriggers": 1,
+        "unnecessaryReplanTriggers": 0,
+        "replanEvents": [
+          {
+            "tick": 4,
+            "robot_id": "R2",
+            "trigger": "yield",
+            "avoided_cell": [
+              11,
+              9
+            ],
+            "peer_id": "R1",
+            "predicted_tick": 7,
+            "foundUnnecessary": false
+          }
+        ],
+        "totalYieldVerdicts": 4,
+        "yieldVerdictsByRobot": {
+          "R2": 4
+        },
+        "yieldEvents": [
+          {
+            "tick": 1,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 8,
+            "peer_remaining": 7,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 2,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 8,
+            "peer_remaining": 6,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 3,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 8,
+            "peer_remaining": 5,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 4,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "YIELD",
+            "own_remaining": 8,
+            "peer_remaining": 4,
+            "conflict_type": "NARROW_AISLE_HEADON"
+          }
+        ],
+        "resetOnlyDeadlockEvents": [],
+        "plannerCallsDuringRun": 1,
+        "collisionCount": 0,
+        "deadlockCount": 0
+      },
+      {
+        "scenarioId": "c_narrow_aisle",
+        "seed": 5,
+        "completed": true,
+        "finalTick": 14,
+        "perRobot": {
+          "R1": {
+            "reachedDestination": true,
+            "arrivalTick": 8,
+            "totalTicksObserved": 8,
+            "movingTicks": 8,
+            "idealTicks": 8,
+            "detourExtraTicks": 0,
+            "waitBuckets": {},
+            "deadlockRecoveryTicks": 0
+          },
+          "R2": {
+            "reachedDestination": true,
+            "arrivalTick": 14,
+            "totalTicksObserved": 14,
+            "movingTicks": 10,
+            "idealTicks": 8,
+            "detourExtraTicks": 2,
+            "waitBuckets": {
+              "conflict_wait": 4
+            },
+            "deadlockRecoveryTicks": 0
+          }
+        },
+        "totalReplanTriggers": 1,
+        "unnecessaryReplanTriggers": 0,
+        "replanEvents": [
+          {
+            "tick": 4,
+            "robot_id": "R2",
+            "trigger": "yield",
+            "avoided_cell": [
+              11,
+              9
+            ],
+            "peer_id": "R1",
+            "predicted_tick": 7,
+            "foundUnnecessary": false
+          }
+        ],
+        "totalYieldVerdicts": 4,
+        "yieldVerdictsByRobot": {
+          "R2": 4
+        },
+        "yieldEvents": [
+          {
+            "tick": 1,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 8,
+            "peer_remaining": 7,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 2,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 8,
+            "peer_remaining": 6,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 3,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 8,
+            "peer_remaining": 5,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 4,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "YIELD",
+            "own_remaining": 8,
+            "peer_remaining": 4,
+            "conflict_type": "NARROW_AISLE_HEADON"
+          }
+        ],
+        "resetOnlyDeadlockEvents": [],
+        "plannerCallsDuringRun": 1,
+        "collisionCount": 0,
+        "deadlockCount": 0
+      },
+      {
+        "scenarioId": "c_narrow_aisle",
+        "seed": 6,
+        "completed": true,
+        "finalTick": 14,
+        "perRobot": {
+          "R1": {
+            "reachedDestination": true,
+            "arrivalTick": 8,
+            "totalTicksObserved": 8,
+            "movingTicks": 8,
+            "idealTicks": 8,
+            "detourExtraTicks": 0,
+            "waitBuckets": {},
+            "deadlockRecoveryTicks": 0
+          },
+          "R2": {
+            "reachedDestination": true,
+            "arrivalTick": 14,
+            "totalTicksObserved": 14,
+            "movingTicks": 10,
+            "idealTicks": 8,
+            "detourExtraTicks": 2,
+            "waitBuckets": {
+              "conflict_wait": 4
+            },
+            "deadlockRecoveryTicks": 0
+          }
+        },
+        "totalReplanTriggers": 1,
+        "unnecessaryReplanTriggers": 0,
+        "replanEvents": [
+          {
+            "tick": 4,
+            "robot_id": "R2",
+            "trigger": "yield",
+            "avoided_cell": [
+              11,
+              9
+            ],
+            "peer_id": "R1",
+            "predicted_tick": 7,
+            "foundUnnecessary": false
+          }
+        ],
+        "totalYieldVerdicts": 4,
+        "yieldVerdictsByRobot": {
+          "R2": 4
+        },
+        "yieldEvents": [
+          {
+            "tick": 1,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 8,
+            "peer_remaining": 7,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 2,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 8,
+            "peer_remaining": 6,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 3,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 8,
+            "peer_remaining": 5,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 4,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "YIELD",
+            "own_remaining": 8,
+            "peer_remaining": 4,
+            "conflict_type": "NARROW_AISLE_HEADON"
+          }
+        ],
+        "resetOnlyDeadlockEvents": [],
+        "plannerCallsDuringRun": 1,
+        "collisionCount": 0,
+        "deadlockCount": 0
+      },
+      {
+        "scenarioId": "c_narrow_aisle",
+        "seed": 7,
+        "completed": true,
+        "finalTick": 14,
+        "perRobot": {
+          "R1": {
+            "reachedDestination": true,
+            "arrivalTick": 8,
+            "totalTicksObserved": 8,
+            "movingTicks": 8,
+            "idealTicks": 8,
+            "detourExtraTicks": 0,
+            "waitBuckets": {},
+            "deadlockRecoveryTicks": 0
+          },
+          "R2": {
+            "reachedDestination": true,
+            "arrivalTick": 14,
+            "totalTicksObserved": 14,
+            "movingTicks": 10,
+            "idealTicks": 8,
+            "detourExtraTicks": 2,
+            "waitBuckets": {
+              "conflict_wait": 4
+            },
+            "deadlockRecoveryTicks": 0
+          }
+        },
+        "totalReplanTriggers": 1,
+        "unnecessaryReplanTriggers": 0,
+        "replanEvents": [
+          {
+            "tick": 4,
+            "robot_id": "R2",
+            "trigger": "yield",
+            "avoided_cell": [
+              11,
+              9
+            ],
+            "peer_id": "R1",
+            "predicted_tick": 7,
+            "foundUnnecessary": false
+          }
+        ],
+        "totalYieldVerdicts": 4,
+        "yieldVerdictsByRobot": {
+          "R2": 4
+        },
+        "yieldEvents": [
+          {
+            "tick": 1,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 8,
+            "peer_remaining": 7,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 2,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 8,
+            "peer_remaining": 6,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 3,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 8,
+            "peer_remaining": 5,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 4,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "YIELD",
+            "own_remaining": 8,
+            "peer_remaining": 4,
+            "conflict_type": "NARROW_AISLE_HEADON"
+          }
+        ],
+        "resetOnlyDeadlockEvents": [],
+        "plannerCallsDuringRun": 1,
+        "collisionCount": 0,
+        "deadlockCount": 0
+      },
+      {
+        "scenarioId": "c_narrow_aisle",
+        "seed": 8,
+        "completed": true,
+        "finalTick": 14,
+        "perRobot": {
+          "R1": {
+            "reachedDestination": true,
+            "arrivalTick": 8,
+            "totalTicksObserved": 8,
+            "movingTicks": 8,
+            "idealTicks": 8,
+            "detourExtraTicks": 0,
+            "waitBuckets": {},
+            "deadlockRecoveryTicks": 0
+          },
+          "R2": {
+            "reachedDestination": true,
+            "arrivalTick": 14,
+            "totalTicksObserved": 14,
+            "movingTicks": 10,
+            "idealTicks": 8,
+            "detourExtraTicks": 2,
+            "waitBuckets": {
+              "conflict_wait": 4
+            },
+            "deadlockRecoveryTicks": 0
+          }
+        },
+        "totalReplanTriggers": 1,
+        "unnecessaryReplanTriggers": 0,
+        "replanEvents": [
+          {
+            "tick": 4,
+            "robot_id": "R2",
+            "trigger": "yield",
+            "avoided_cell": [
+              11,
+              9
+            ],
+            "peer_id": "R1",
+            "predicted_tick": 7,
+            "foundUnnecessary": false
+          }
+        ],
+        "totalYieldVerdicts": 4,
+        "yieldVerdictsByRobot": {
+          "R2": 4
+        },
+        "yieldEvents": [
+          {
+            "tick": 1,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 8,
+            "peer_remaining": 7,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 2,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 8,
+            "peer_remaining": 6,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 3,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 8,
+            "peer_remaining": 5,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 4,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "YIELD",
+            "own_remaining": 8,
+            "peer_remaining": 4,
+            "conflict_type": "NARROW_AISLE_HEADON"
+          }
+        ],
+        "resetOnlyDeadlockEvents": [],
+        "plannerCallsDuringRun": 1,
+        "collisionCount": 0,
+        "deadlockCount": 0
+      },
+      {
+        "scenarioId": "c_narrow_aisle",
+        "seed": 9,
+        "completed": true,
+        "finalTick": 14,
+        "perRobot": {
+          "R1": {
+            "reachedDestination": true,
+            "arrivalTick": 8,
+            "totalTicksObserved": 8,
+            "movingTicks": 8,
+            "idealTicks": 8,
+            "detourExtraTicks": 0,
+            "waitBuckets": {},
+            "deadlockRecoveryTicks": 0
+          },
+          "R2": {
+            "reachedDestination": true,
+            "arrivalTick": 14,
+            "totalTicksObserved": 14,
+            "movingTicks": 10,
+            "idealTicks": 8,
+            "detourExtraTicks": 2,
+            "waitBuckets": {
+              "conflict_wait": 4
+            },
+            "deadlockRecoveryTicks": 0
+          }
+        },
+        "totalReplanTriggers": 1,
+        "unnecessaryReplanTriggers": 0,
+        "replanEvents": [
+          {
+            "tick": 4,
+            "robot_id": "R2",
+            "trigger": "yield",
+            "avoided_cell": [
+              11,
+              9
+            ],
+            "peer_id": "R1",
+            "predicted_tick": 7,
+            "foundUnnecessary": false
+          }
+        ],
+        "totalYieldVerdicts": 4,
+        "yieldVerdictsByRobot": {
+          "R2": 4
+        },
+        "yieldEvents": [
+          {
+            "tick": 1,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 8,
+            "peer_remaining": 7,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 2,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 8,
+            "peer_remaining": 6,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 3,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 8,
+            "peer_remaining": 5,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 4,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "YIELD",
+            "own_remaining": 8,
+            "peer_remaining": 4,
+            "conflict_type": "NARROW_AISLE_HEADON"
+          }
+        ],
+        "resetOnlyDeadlockEvents": [],
+        "plannerCallsDuringRun": 1,
+        "collisionCount": 0,
+        "deadlockCount": 0
+      },
+      {
+        "scenarioId": "c_narrow_aisle",
+        "seed": 10,
+        "completed": true,
+        "finalTick": 14,
+        "perRobot": {
+          "R1": {
+            "reachedDestination": true,
+            "arrivalTick": 8,
+            "totalTicksObserved": 8,
+            "movingTicks": 8,
+            "idealTicks": 8,
+            "detourExtraTicks": 0,
+            "waitBuckets": {},
+            "deadlockRecoveryTicks": 0
+          },
+          "R2": {
+            "reachedDestination": true,
+            "arrivalTick": 14,
+            "totalTicksObserved": 14,
+            "movingTicks": 10,
+            "idealTicks": 8,
+            "detourExtraTicks": 2,
+            "waitBuckets": {
+              "conflict_wait": 4
+            },
+            "deadlockRecoveryTicks": 0
+          }
+        },
+        "totalReplanTriggers": 1,
+        "unnecessaryReplanTriggers": 0,
+        "replanEvents": [
+          {
+            "tick": 4,
+            "robot_id": "R2",
+            "trigger": "yield",
+            "avoided_cell": [
+              11,
+              9
+            ],
+            "peer_id": "R1",
+            "predicted_tick": 7,
+            "foundUnnecessary": false
+          }
+        ],
+        "totalYieldVerdicts": 4,
+        "yieldVerdictsByRobot": {
+          "R2": 4
+        },
+        "yieldEvents": [
+          {
+            "tick": 1,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 8,
+            "peer_remaining": 7,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 2,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 8,
+            "peer_remaining": 6,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 3,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 8,
+            "peer_remaining": 5,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 4,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "YIELD",
+            "own_remaining": 8,
+            "peer_remaining": 4,
+            "conflict_type": "NARROW_AISLE_HEADON"
+          }
+        ],
+        "resetOnlyDeadlockEvents": [],
+        "plannerCallsDuringRun": 1,
+        "collisionCount": 0,
+        "deadlockCount": 0
+      }
+    ],
+    "d_deadlock": [
+      {
+        "scenarioId": "d_deadlock",
+        "seed": 1,
+        "completed": true,
+        "finalTick": 12,
+        "perRobot": {
+          "R1": {
+            "reachedDestination": true,
+            "arrivalTick": 10,
+            "totalTicksObserved": 10,
+            "movingTicks": 4,
+            "idealTicks": 4,
+            "detourExtraTicks": 0,
+            "waitBuckets": {
+              "conflict_wait": 6
+            },
+            "deadlockRecoveryTicks": 1
+          },
+          "R2": {
+            "reachedDestination": true,
+            "arrivalTick": 12,
+            "totalTicksObserved": 12,
+            "movingTicks": 6,
+            "idealTicks": 4,
+            "detourExtraTicks": 2,
+            "waitBuckets": {
+              "conflict_wait": 5,
+              "residual_wait": 1
+            },
+            "deadlockRecoveryTicks": 1
+          }
+        },
+        "totalReplanTriggers": 1,
+        "unnecessaryReplanTriggers": 0,
+        "replanEvents": [
+          {
+            "tick": 7,
+            "robot_id": "R2",
+            "trigger": "force_yield",
+            "avoided_cell": [
+              10,
+              9
+            ],
+            "peer_id": "R1",
+            "predicted_tick": 8,
+            "foundUnnecessary": false
+          }
+        ],
+        "totalYieldVerdicts": 5,
+        "yieldVerdictsByRobot": {
+          "R2": 5
+        },
+        "yieldEvents": [
+          {
+            "tick": 2,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 3,
+            "peer_remaining": 3,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 4,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 3,
+            "peer_remaining": 2,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 5,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 3,
+            "peer_remaining": 2,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 6,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 3,
+            "peer_remaining": 2,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 7,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 3,
+            "peer_remaining": 2,
+            "conflict_type": "SAME_CELL"
+          }
+        ],
+        "resetOnlyDeadlockEvents": [
+          {
+            "tick": 8,
+            "robot_id": "R1",
+            "peer_id": "R2"
+          }
+        ],
+        "plannerCallsDuringRun": 2,
+        "collisionCount": 0,
+        "deadlockCount": 2
+      },
+      {
+        "scenarioId": "d_deadlock",
+        "seed": 2,
+        "completed": true,
+        "finalTick": 12,
+        "perRobot": {
+          "R1": {
+            "reachedDestination": true,
+            "arrivalTick": 10,
+            "totalTicksObserved": 10,
+            "movingTicks": 4,
+            "idealTicks": 4,
+            "detourExtraTicks": 0,
+            "waitBuckets": {
+              "conflict_wait": 6
+            },
+            "deadlockRecoveryTicks": 1
+          },
+          "R2": {
+            "reachedDestination": true,
+            "arrivalTick": 12,
+            "totalTicksObserved": 12,
+            "movingTicks": 6,
+            "idealTicks": 4,
+            "detourExtraTicks": 2,
+            "waitBuckets": {
+              "conflict_wait": 5,
+              "residual_wait": 1
+            },
+            "deadlockRecoveryTicks": 1
+          }
+        },
+        "totalReplanTriggers": 1,
+        "unnecessaryReplanTriggers": 0,
+        "replanEvents": [
+          {
+            "tick": 7,
+            "robot_id": "R2",
+            "trigger": "force_yield",
+            "avoided_cell": [
+              10,
+              9
+            ],
+            "peer_id": "R1",
+            "predicted_tick": 8,
+            "foundUnnecessary": false
+          }
+        ],
+        "totalYieldVerdicts": 5,
+        "yieldVerdictsByRobot": {
+          "R2": 5
+        },
+        "yieldEvents": [
+          {
+            "tick": 2,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 3,
+            "peer_remaining": 3,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 4,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 3,
+            "peer_remaining": 2,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 5,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 3,
+            "peer_remaining": 2,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 6,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 3,
+            "peer_remaining": 2,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 7,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 3,
+            "peer_remaining": 2,
+            "conflict_type": "SAME_CELL"
+          }
+        ],
+        "resetOnlyDeadlockEvents": [
+          {
+            "tick": 8,
+            "robot_id": "R1",
+            "peer_id": "R2"
+          }
+        ],
+        "plannerCallsDuringRun": 2,
+        "collisionCount": 0,
+        "deadlockCount": 2
+      },
+      {
+        "scenarioId": "d_deadlock",
+        "seed": 3,
+        "completed": true,
+        "finalTick": 12,
+        "perRobot": {
+          "R1": {
+            "reachedDestination": true,
+            "arrivalTick": 10,
+            "totalTicksObserved": 10,
+            "movingTicks": 4,
+            "idealTicks": 4,
+            "detourExtraTicks": 0,
+            "waitBuckets": {
+              "conflict_wait": 6
+            },
+            "deadlockRecoveryTicks": 1
+          },
+          "R2": {
+            "reachedDestination": true,
+            "arrivalTick": 12,
+            "totalTicksObserved": 12,
+            "movingTicks": 6,
+            "idealTicks": 4,
+            "detourExtraTicks": 2,
+            "waitBuckets": {
+              "conflict_wait": 5,
+              "residual_wait": 1
+            },
+            "deadlockRecoveryTicks": 1
+          }
+        },
+        "totalReplanTriggers": 1,
+        "unnecessaryReplanTriggers": 0,
+        "replanEvents": [
+          {
+            "tick": 7,
+            "robot_id": "R2",
+            "trigger": "force_yield",
+            "avoided_cell": [
+              10,
+              9
+            ],
+            "peer_id": "R1",
+            "predicted_tick": 8,
+            "foundUnnecessary": false
+          }
+        ],
+        "totalYieldVerdicts": 5,
+        "yieldVerdictsByRobot": {
+          "R2": 5
+        },
+        "yieldEvents": [
+          {
+            "tick": 2,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 3,
+            "peer_remaining": 3,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 4,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 3,
+            "peer_remaining": 2,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 5,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 3,
+            "peer_remaining": 2,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 6,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 3,
+            "peer_remaining": 2,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 7,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 3,
+            "peer_remaining": 2,
+            "conflict_type": "SAME_CELL"
+          }
+        ],
+        "resetOnlyDeadlockEvents": [
+          {
+            "tick": 8,
+            "robot_id": "R1",
+            "peer_id": "R2"
+          }
+        ],
+        "plannerCallsDuringRun": 2,
+        "collisionCount": 0,
+        "deadlockCount": 2
+      },
+      {
+        "scenarioId": "d_deadlock",
+        "seed": 4,
+        "completed": true,
+        "finalTick": 12,
+        "perRobot": {
+          "R1": {
+            "reachedDestination": true,
+            "arrivalTick": 10,
+            "totalTicksObserved": 10,
+            "movingTicks": 4,
+            "idealTicks": 4,
+            "detourExtraTicks": 0,
+            "waitBuckets": {
+              "conflict_wait": 6
+            },
+            "deadlockRecoveryTicks": 1
+          },
+          "R2": {
+            "reachedDestination": true,
+            "arrivalTick": 12,
+            "totalTicksObserved": 12,
+            "movingTicks": 6,
+            "idealTicks": 4,
+            "detourExtraTicks": 2,
+            "waitBuckets": {
+              "conflict_wait": 5,
+              "residual_wait": 1
+            },
+            "deadlockRecoveryTicks": 1
+          }
+        },
+        "totalReplanTriggers": 1,
+        "unnecessaryReplanTriggers": 0,
+        "replanEvents": [
+          {
+            "tick": 7,
+            "robot_id": "R2",
+            "trigger": "force_yield",
+            "avoided_cell": [
+              10,
+              9
+            ],
+            "peer_id": "R1",
+            "predicted_tick": 8,
+            "foundUnnecessary": false
+          }
+        ],
+        "totalYieldVerdicts": 5,
+        "yieldVerdictsByRobot": {
+          "R2": 5
+        },
+        "yieldEvents": [
+          {
+            "tick": 2,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 3,
+            "peer_remaining": 3,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 4,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 3,
+            "peer_remaining": 2,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 5,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 3,
+            "peer_remaining": 2,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 6,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 3,
+            "peer_remaining": 2,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 7,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 3,
+            "peer_remaining": 2,
+            "conflict_type": "SAME_CELL"
+          }
+        ],
+        "resetOnlyDeadlockEvents": [
+          {
+            "tick": 8,
+            "robot_id": "R1",
+            "peer_id": "R2"
+          }
+        ],
+        "plannerCallsDuringRun": 2,
+        "collisionCount": 0,
+        "deadlockCount": 2
+      },
+      {
+        "scenarioId": "d_deadlock",
+        "seed": 5,
+        "completed": true,
+        "finalTick": 12,
+        "perRobot": {
+          "R1": {
+            "reachedDestination": true,
+            "arrivalTick": 10,
+            "totalTicksObserved": 10,
+            "movingTicks": 4,
+            "idealTicks": 4,
+            "detourExtraTicks": 0,
+            "waitBuckets": {
+              "conflict_wait": 6
+            },
+            "deadlockRecoveryTicks": 1
+          },
+          "R2": {
+            "reachedDestination": true,
+            "arrivalTick": 12,
+            "totalTicksObserved": 12,
+            "movingTicks": 6,
+            "idealTicks": 4,
+            "detourExtraTicks": 2,
+            "waitBuckets": {
+              "conflict_wait": 5,
+              "residual_wait": 1
+            },
+            "deadlockRecoveryTicks": 1
+          }
+        },
+        "totalReplanTriggers": 1,
+        "unnecessaryReplanTriggers": 0,
+        "replanEvents": [
+          {
+            "tick": 7,
+            "robot_id": "R2",
+            "trigger": "force_yield",
+            "avoided_cell": [
+              10,
+              9
+            ],
+            "peer_id": "R1",
+            "predicted_tick": 8,
+            "foundUnnecessary": false
+          }
+        ],
+        "totalYieldVerdicts": 5,
+        "yieldVerdictsByRobot": {
+          "R2": 5
+        },
+        "yieldEvents": [
+          {
+            "tick": 2,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 3,
+            "peer_remaining": 3,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 4,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 3,
+            "peer_remaining": 2,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 5,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 3,
+            "peer_remaining": 2,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 6,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 3,
+            "peer_remaining": 2,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 7,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 3,
+            "peer_remaining": 2,
+            "conflict_type": "SAME_CELL"
+          }
+        ],
+        "resetOnlyDeadlockEvents": [
+          {
+            "tick": 8,
+            "robot_id": "R1",
+            "peer_id": "R2"
+          }
+        ],
+        "plannerCallsDuringRun": 2,
+        "collisionCount": 0,
+        "deadlockCount": 2
+      },
+      {
+        "scenarioId": "d_deadlock",
+        "seed": 6,
+        "completed": true,
+        "finalTick": 12,
+        "perRobot": {
+          "R1": {
+            "reachedDestination": true,
+            "arrivalTick": 10,
+            "totalTicksObserved": 10,
+            "movingTicks": 4,
+            "idealTicks": 4,
+            "detourExtraTicks": 0,
+            "waitBuckets": {
+              "conflict_wait": 6
+            },
+            "deadlockRecoveryTicks": 1
+          },
+          "R2": {
+            "reachedDestination": true,
+            "arrivalTick": 12,
+            "totalTicksObserved": 12,
+            "movingTicks": 6,
+            "idealTicks": 4,
+            "detourExtraTicks": 2,
+            "waitBuckets": {
+              "conflict_wait": 5,
+              "residual_wait": 1
+            },
+            "deadlockRecoveryTicks": 1
+          }
+        },
+        "totalReplanTriggers": 1,
+        "unnecessaryReplanTriggers": 0,
+        "replanEvents": [
+          {
+            "tick": 7,
+            "robot_id": "R2",
+            "trigger": "force_yield",
+            "avoided_cell": [
+              10,
+              9
+            ],
+            "peer_id": "R1",
+            "predicted_tick": 8,
+            "foundUnnecessary": false
+          }
+        ],
+        "totalYieldVerdicts": 5,
+        "yieldVerdictsByRobot": {
+          "R2": 5
+        },
+        "yieldEvents": [
+          {
+            "tick": 2,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 3,
+            "peer_remaining": 3,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 4,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 3,
+            "peer_remaining": 2,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 5,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 3,
+            "peer_remaining": 2,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 6,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 3,
+            "peer_remaining": 2,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 7,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 3,
+            "peer_remaining": 2,
+            "conflict_type": "SAME_CELL"
+          }
+        ],
+        "resetOnlyDeadlockEvents": [
+          {
+            "tick": 8,
+            "robot_id": "R1",
+            "peer_id": "R2"
+          }
+        ],
+        "plannerCallsDuringRun": 2,
+        "collisionCount": 0,
+        "deadlockCount": 2
+      },
+      {
+        "scenarioId": "d_deadlock",
+        "seed": 7,
+        "completed": true,
+        "finalTick": 12,
+        "perRobot": {
+          "R1": {
+            "reachedDestination": true,
+            "arrivalTick": 10,
+            "totalTicksObserved": 10,
+            "movingTicks": 4,
+            "idealTicks": 4,
+            "detourExtraTicks": 0,
+            "waitBuckets": {
+              "conflict_wait": 6
+            },
+            "deadlockRecoveryTicks": 1
+          },
+          "R2": {
+            "reachedDestination": true,
+            "arrivalTick": 12,
+            "totalTicksObserved": 12,
+            "movingTicks": 6,
+            "idealTicks": 4,
+            "detourExtraTicks": 2,
+            "waitBuckets": {
+              "conflict_wait": 5,
+              "residual_wait": 1
+            },
+            "deadlockRecoveryTicks": 1
+          }
+        },
+        "totalReplanTriggers": 1,
+        "unnecessaryReplanTriggers": 0,
+        "replanEvents": [
+          {
+            "tick": 7,
+            "robot_id": "R2",
+            "trigger": "force_yield",
+            "avoided_cell": [
+              10,
+              9
+            ],
+            "peer_id": "R1",
+            "predicted_tick": 8,
+            "foundUnnecessary": false
+          }
+        ],
+        "totalYieldVerdicts": 5,
+        "yieldVerdictsByRobot": {
+          "R2": 5
+        },
+        "yieldEvents": [
+          {
+            "tick": 2,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 3,
+            "peer_remaining": 3,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 4,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 3,
+            "peer_remaining": 2,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 5,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 3,
+            "peer_remaining": 2,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 6,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 3,
+            "peer_remaining": 2,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 7,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 3,
+            "peer_remaining": 2,
+            "conflict_type": "SAME_CELL"
+          }
+        ],
+        "resetOnlyDeadlockEvents": [
+          {
+            "tick": 8,
+            "robot_id": "R1",
+            "peer_id": "R2"
+          }
+        ],
+        "plannerCallsDuringRun": 2,
+        "collisionCount": 0,
+        "deadlockCount": 2
+      },
+      {
+        "scenarioId": "d_deadlock",
+        "seed": 8,
+        "completed": true,
+        "finalTick": 12,
+        "perRobot": {
+          "R1": {
+            "reachedDestination": true,
+            "arrivalTick": 10,
+            "totalTicksObserved": 10,
+            "movingTicks": 4,
+            "idealTicks": 4,
+            "detourExtraTicks": 0,
+            "waitBuckets": {
+              "conflict_wait": 6
+            },
+            "deadlockRecoveryTicks": 1
+          },
+          "R2": {
+            "reachedDestination": true,
+            "arrivalTick": 12,
+            "totalTicksObserved": 12,
+            "movingTicks": 6,
+            "idealTicks": 4,
+            "detourExtraTicks": 2,
+            "waitBuckets": {
+              "conflict_wait": 5,
+              "residual_wait": 1
+            },
+            "deadlockRecoveryTicks": 1
+          }
+        },
+        "totalReplanTriggers": 1,
+        "unnecessaryReplanTriggers": 0,
+        "replanEvents": [
+          {
+            "tick": 7,
+            "robot_id": "R2",
+            "trigger": "force_yield",
+            "avoided_cell": [
+              10,
+              9
+            ],
+            "peer_id": "R1",
+            "predicted_tick": 8,
+            "foundUnnecessary": false
+          }
+        ],
+        "totalYieldVerdicts": 5,
+        "yieldVerdictsByRobot": {
+          "R2": 5
+        },
+        "yieldEvents": [
+          {
+            "tick": 2,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 3,
+            "peer_remaining": 3,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 4,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 3,
+            "peer_remaining": 2,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 5,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 3,
+            "peer_remaining": 2,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 6,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 3,
+            "peer_remaining": 2,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 7,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 3,
+            "peer_remaining": 2,
+            "conflict_type": "SAME_CELL"
+          }
+        ],
+        "resetOnlyDeadlockEvents": [
+          {
+            "tick": 8,
+            "robot_id": "R1",
+            "peer_id": "R2"
+          }
+        ],
+        "plannerCallsDuringRun": 2,
+        "collisionCount": 0,
+        "deadlockCount": 2
+      },
+      {
+        "scenarioId": "d_deadlock",
+        "seed": 9,
+        "completed": true,
+        "finalTick": 12,
+        "perRobot": {
+          "R1": {
+            "reachedDestination": true,
+            "arrivalTick": 10,
+            "totalTicksObserved": 10,
+            "movingTicks": 4,
+            "idealTicks": 4,
+            "detourExtraTicks": 0,
+            "waitBuckets": {
+              "conflict_wait": 6
+            },
+            "deadlockRecoveryTicks": 1
+          },
+          "R2": {
+            "reachedDestination": true,
+            "arrivalTick": 12,
+            "totalTicksObserved": 12,
+            "movingTicks": 6,
+            "idealTicks": 4,
+            "detourExtraTicks": 2,
+            "waitBuckets": {
+              "conflict_wait": 5,
+              "residual_wait": 1
+            },
+            "deadlockRecoveryTicks": 1
+          }
+        },
+        "totalReplanTriggers": 1,
+        "unnecessaryReplanTriggers": 0,
+        "replanEvents": [
+          {
+            "tick": 7,
+            "robot_id": "R2",
+            "trigger": "force_yield",
+            "avoided_cell": [
+              10,
+              9
+            ],
+            "peer_id": "R1",
+            "predicted_tick": 8,
+            "foundUnnecessary": false
+          }
+        ],
+        "totalYieldVerdicts": 5,
+        "yieldVerdictsByRobot": {
+          "R2": 5
+        },
+        "yieldEvents": [
+          {
+            "tick": 2,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 3,
+            "peer_remaining": 3,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 4,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 3,
+            "peer_remaining": 2,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 5,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 3,
+            "peer_remaining": 2,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 6,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 3,
+            "peer_remaining": 2,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 7,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 3,
+            "peer_remaining": 2,
+            "conflict_type": "SAME_CELL"
+          }
+        ],
+        "resetOnlyDeadlockEvents": [
+          {
+            "tick": 8,
+            "robot_id": "R1",
+            "peer_id": "R2"
+          }
+        ],
+        "plannerCallsDuringRun": 2,
+        "collisionCount": 0,
+        "deadlockCount": 2
+      },
+      {
+        "scenarioId": "d_deadlock",
+        "seed": 10,
+        "completed": true,
+        "finalTick": 12,
+        "perRobot": {
+          "R1": {
+            "reachedDestination": true,
+            "arrivalTick": 10,
+            "totalTicksObserved": 10,
+            "movingTicks": 4,
+            "idealTicks": 4,
+            "detourExtraTicks": 0,
+            "waitBuckets": {
+              "conflict_wait": 6
+            },
+            "deadlockRecoveryTicks": 1
+          },
+          "R2": {
+            "reachedDestination": true,
+            "arrivalTick": 12,
+            "totalTicksObserved": 12,
+            "movingTicks": 6,
+            "idealTicks": 4,
+            "detourExtraTicks": 2,
+            "waitBuckets": {
+              "conflict_wait": 5,
+              "residual_wait": 1
+            },
+            "deadlockRecoveryTicks": 1
+          }
+        },
+        "totalReplanTriggers": 1,
+        "unnecessaryReplanTriggers": 0,
+        "replanEvents": [
+          {
+            "tick": 7,
+            "robot_id": "R2",
+            "trigger": "force_yield",
+            "avoided_cell": [
+              10,
+              9
+            ],
+            "peer_id": "R1",
+            "predicted_tick": 8,
+            "foundUnnecessary": false
+          }
+        ],
+        "totalYieldVerdicts": 5,
+        "yieldVerdictsByRobot": {
+          "R2": 5
+        },
+        "yieldEvents": [
+          {
+            "tick": 2,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 3,
+            "peer_remaining": 3,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 4,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 3,
+            "peer_remaining": 2,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 5,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 3,
+            "peer_remaining": 2,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 6,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 3,
+            "peer_remaining": 2,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 7,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 3,
+            "peer_remaining": 2,
+            "conflict_type": "SAME_CELL"
+          }
+        ],
+        "resetOnlyDeadlockEvents": [
+          {
+            "tick": 8,
+            "robot_id": "R1",
+            "peer_id": "R2"
+          }
+        ],
+        "plannerCallsDuringRun": 2,
+        "collisionCount": 0,
+        "deadlockCount": 2
+      }
+    ],
+    "g_high_load": [
+      {
+        "scenarioId": "g_high_load",
+        "seed": 1,
+        "completed": true,
+        "finalTick": 28,
+        "perRobot": {
+          "R1": {
+            "reachedDestination": true,
+            "arrivalTick": 15,
+            "totalTicksObserved": 15,
+            "movingTicks": 15,
+            "idealTicks": 15,
+            "detourExtraTicks": 0,
+            "waitBuckets": {},
+            "deadlockRecoveryTicks": 0
+          },
+          "R2": {
+            "reachedDestination": true,
+            "arrivalTick": 23,
+            "totalTicksObserved": 23,
+            "movingTicks": 17,
+            "idealTicks": 15,
+            "detourExtraTicks": 2,
+            "waitBuckets": {
+              "conflict_wait": 6
+            },
+            "deadlockRecoveryTicks": 1
+          },
+          "R3": {
+            "reachedDestination": true,
+            "arrivalTick": 18,
+            "totalTicksObserved": 18,
+            "movingTicks": 15,
+            "idealTicks": 15,
+            "detourExtraTicks": 0,
+            "waitBuckets": {
+              "conflict_wait": 3
+            },
+            "deadlockRecoveryTicks": 0
+          },
+          "R4": {
+            "reachedDestination": true,
+            "arrivalTick": 28,
+            "totalTicksObserved": 28,
+            "movingTicks": 17,
+            "idealTicks": 15,
+            "detourExtraTicks": 2,
+            "waitBuckets": {
+              "conflict_wait": 11
+            },
+            "deadlockRecoveryTicks": 2
+          },
+          "R5": {
+            "reachedDestination": true,
+            "arrivalTick": 15,
+            "totalTicksObserved": 15,
+            "movingTicks": 15,
+            "idealTicks": 15,
+            "detourExtraTicks": 0,
+            "waitBuckets": {},
+            "deadlockRecoveryTicks": 0
+          },
+          "R6": {
+            "reachedDestination": true,
+            "arrivalTick": 26,
+            "totalTicksObserved": 26,
+            "movingTicks": 17,
+            "idealTicks": 15,
+            "detourExtraTicks": 2,
+            "waitBuckets": {
+              "conflict_wait": 9
+            },
+            "deadlockRecoveryTicks": 1
+          }
+        },
+        "totalReplanTriggers": 6,
+        "unnecessaryReplanTriggers": 4,
+        "replanEvents": [
+          {
+            "tick": 6,
+            "robot_id": "R2",
+            "trigger": "force_yield",
+            "avoided_cell": [
+              16,
+              2
+            ],
+            "peer_id": "R1",
+            "predicted_tick": 7,
+            "foundUnnecessary": true
+          },
+          {
+            "tick": 6,
+            "robot_id": "R6",
+            "trigger": "force_yield",
+            "avoided_cell": [
+              10,
+              16
+            ],
+            "peer_id": "R5",
+            "predicted_tick": 7,
+            "foundUnnecessary": true
+          },
+          {
+            "tick": 8,
+            "robot_id": "R6",
+            "trigger": "yield",
+            "avoided_cell": [
+              10,
+              14
+            ],
+            "peer_id": "R5",
+            "predicted_tick": 13,
+            "foundUnnecessary": false
+          },
+          {
+            "tick": 9,
+            "robot_id": "R6",
+            "trigger": "yield",
+            "avoided_cell": [
+              10,
+              12
+            ],
+            "peer_id": "R5",
+            "predicted_tick": 11,
+            "foundUnnecessary": false
+          },
+          {
+            "tick": 11,
+            "robot_id": "R4",
+            "trigger": "yield",
+            "avoided_cell": [
+              15,
+              17
+            ],
+            "peer_id": "R3",
+            "predicted_tick": 14,
+            "foundUnnecessary": true
+          },
+          {
+            "tick": 11,
+            "robot_id": "R4",
+            "trigger": "force_yield",
+            "avoided_cell": [
+              16,
+              17
+            ],
+            "peer_id": "R3",
+            "predicted_tick": 12,
+            "foundUnnecessary": true
+          }
+        ],
+        "totalYieldVerdicts": 26,
+        "yieldVerdictsByRobot": {
+          "R2": 6,
+          "R4": 11,
+          "R6": 9
+        },
+        "yieldEvents": [
+          {
+            "tick": 1,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 14,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 1,
+            "own_id": "R4",
+            "peer_id": "R3",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 14,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 1,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 14,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 2,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 13,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 2,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 2,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 13,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 3,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 12,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 3,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 3,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 12,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 4,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 11,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 4,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 4,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 11,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 5,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 10,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 5,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 5,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 10,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 6,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 9,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 6,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 6,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 9,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 7,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 7,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 8,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 8,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 8,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "YIELD",
+            "own_remaining": 15,
+            "peer_remaining": 7,
+            "conflict_type": "NARROW_AISLE_HEADON"
+          },
+          {
+            "tick": 9,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 9,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "YIELD",
+            "own_remaining": 15,
+            "peer_remaining": 6,
+            "conflict_type": "NARROW_AISLE_HEADON"
+          },
+          {
+            "tick": 10,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 11,
+            "own_id": "R4",
+            "peer_id": "R3",
+            "action": "YIELD",
+            "own_remaining": 15,
+            "peer_remaining": 7,
+            "conflict_type": "NARROW_AISLE_HEADON"
+          }
+        ],
+        "resetOnlyDeadlockEvents": [
+          {
+            "tick": 6,
+            "robot_id": "R4",
+            "peer_id": "R6"
+          }
+        ],
+        "plannerCallsDuringRun": 6,
+        "collisionCount": 0,
+        "deadlockCount": 4
+      },
+      {
+        "scenarioId": "g_high_load",
+        "seed": 2,
+        "completed": true,
+        "finalTick": 28,
+        "perRobot": {
+          "R1": {
+            "reachedDestination": true,
+            "arrivalTick": 15,
+            "totalTicksObserved": 15,
+            "movingTicks": 15,
+            "idealTicks": 15,
+            "detourExtraTicks": 0,
+            "waitBuckets": {},
+            "deadlockRecoveryTicks": 0
+          },
+          "R2": {
+            "reachedDestination": true,
+            "arrivalTick": 23,
+            "totalTicksObserved": 23,
+            "movingTicks": 17,
+            "idealTicks": 15,
+            "detourExtraTicks": 2,
+            "waitBuckets": {
+              "conflict_wait": 6
+            },
+            "deadlockRecoveryTicks": 1
+          },
+          "R3": {
+            "reachedDestination": true,
+            "arrivalTick": 18,
+            "totalTicksObserved": 18,
+            "movingTicks": 15,
+            "idealTicks": 15,
+            "detourExtraTicks": 0,
+            "waitBuckets": {
+              "conflict_wait": 3
+            },
+            "deadlockRecoveryTicks": 0
+          },
+          "R4": {
+            "reachedDestination": true,
+            "arrivalTick": 28,
+            "totalTicksObserved": 28,
+            "movingTicks": 17,
+            "idealTicks": 15,
+            "detourExtraTicks": 2,
+            "waitBuckets": {
+              "conflict_wait": 11
+            },
+            "deadlockRecoveryTicks": 2
+          },
+          "R5": {
+            "reachedDestination": true,
+            "arrivalTick": 15,
+            "totalTicksObserved": 15,
+            "movingTicks": 15,
+            "idealTicks": 15,
+            "detourExtraTicks": 0,
+            "waitBuckets": {},
+            "deadlockRecoveryTicks": 0
+          },
+          "R6": {
+            "reachedDestination": true,
+            "arrivalTick": 26,
+            "totalTicksObserved": 26,
+            "movingTicks": 17,
+            "idealTicks": 15,
+            "detourExtraTicks": 2,
+            "waitBuckets": {
+              "conflict_wait": 9
+            },
+            "deadlockRecoveryTicks": 1
+          }
+        },
+        "totalReplanTriggers": 6,
+        "unnecessaryReplanTriggers": 4,
+        "replanEvents": [
+          {
+            "tick": 6,
+            "robot_id": "R2",
+            "trigger": "force_yield",
+            "avoided_cell": [
+              16,
+              2
+            ],
+            "peer_id": "R1",
+            "predicted_tick": 7,
+            "foundUnnecessary": true
+          },
+          {
+            "tick": 6,
+            "robot_id": "R6",
+            "trigger": "force_yield",
+            "avoided_cell": [
+              10,
+              16
+            ],
+            "peer_id": "R5",
+            "predicted_tick": 7,
+            "foundUnnecessary": true
+          },
+          {
+            "tick": 8,
+            "robot_id": "R6",
+            "trigger": "yield",
+            "avoided_cell": [
+              10,
+              14
+            ],
+            "peer_id": "R5",
+            "predicted_tick": 13,
+            "foundUnnecessary": false
+          },
+          {
+            "tick": 9,
+            "robot_id": "R6",
+            "trigger": "yield",
+            "avoided_cell": [
+              10,
+              12
+            ],
+            "peer_id": "R5",
+            "predicted_tick": 11,
+            "foundUnnecessary": false
+          },
+          {
+            "tick": 11,
+            "robot_id": "R4",
+            "trigger": "yield",
+            "avoided_cell": [
+              15,
+              17
+            ],
+            "peer_id": "R3",
+            "predicted_tick": 14,
+            "foundUnnecessary": true
+          },
+          {
+            "tick": 11,
+            "robot_id": "R4",
+            "trigger": "force_yield",
+            "avoided_cell": [
+              16,
+              17
+            ],
+            "peer_id": "R3",
+            "predicted_tick": 12,
+            "foundUnnecessary": true
+          }
+        ],
+        "totalYieldVerdicts": 26,
+        "yieldVerdictsByRobot": {
+          "R2": 6,
+          "R4": 11,
+          "R6": 9
+        },
+        "yieldEvents": [
+          {
+            "tick": 1,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 14,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 1,
+            "own_id": "R4",
+            "peer_id": "R3",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 14,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 1,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 14,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 2,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 13,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 2,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 2,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 13,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 3,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 12,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 3,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 3,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 12,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 4,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 11,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 4,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 4,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 11,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 5,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 10,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 5,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 5,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 10,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 6,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 9,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 6,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 6,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 9,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 7,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 7,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 8,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 8,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 8,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "YIELD",
+            "own_remaining": 15,
+            "peer_remaining": 7,
+            "conflict_type": "NARROW_AISLE_HEADON"
+          },
+          {
+            "tick": 9,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 9,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "YIELD",
+            "own_remaining": 15,
+            "peer_remaining": 6,
+            "conflict_type": "NARROW_AISLE_HEADON"
+          },
+          {
+            "tick": 10,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 11,
+            "own_id": "R4",
+            "peer_id": "R3",
+            "action": "YIELD",
+            "own_remaining": 15,
+            "peer_remaining": 7,
+            "conflict_type": "NARROW_AISLE_HEADON"
+          }
+        ],
+        "resetOnlyDeadlockEvents": [
+          {
+            "tick": 6,
+            "robot_id": "R4",
+            "peer_id": "R6"
+          }
+        ],
+        "plannerCallsDuringRun": 6,
+        "collisionCount": 0,
+        "deadlockCount": 4
+      },
+      {
+        "scenarioId": "g_high_load",
+        "seed": 3,
+        "completed": true,
+        "finalTick": 28,
+        "perRobot": {
+          "R1": {
+            "reachedDestination": true,
+            "arrivalTick": 15,
+            "totalTicksObserved": 15,
+            "movingTicks": 15,
+            "idealTicks": 15,
+            "detourExtraTicks": 0,
+            "waitBuckets": {},
+            "deadlockRecoveryTicks": 0
+          },
+          "R2": {
+            "reachedDestination": true,
+            "arrivalTick": 23,
+            "totalTicksObserved": 23,
+            "movingTicks": 17,
+            "idealTicks": 15,
+            "detourExtraTicks": 2,
+            "waitBuckets": {
+              "conflict_wait": 6
+            },
+            "deadlockRecoveryTicks": 1
+          },
+          "R3": {
+            "reachedDestination": true,
+            "arrivalTick": 18,
+            "totalTicksObserved": 18,
+            "movingTicks": 15,
+            "idealTicks": 15,
+            "detourExtraTicks": 0,
+            "waitBuckets": {
+              "conflict_wait": 3
+            },
+            "deadlockRecoveryTicks": 0
+          },
+          "R4": {
+            "reachedDestination": true,
+            "arrivalTick": 28,
+            "totalTicksObserved": 28,
+            "movingTicks": 17,
+            "idealTicks": 15,
+            "detourExtraTicks": 2,
+            "waitBuckets": {
+              "conflict_wait": 11
+            },
+            "deadlockRecoveryTicks": 2
+          },
+          "R5": {
+            "reachedDestination": true,
+            "arrivalTick": 15,
+            "totalTicksObserved": 15,
+            "movingTicks": 15,
+            "idealTicks": 15,
+            "detourExtraTicks": 0,
+            "waitBuckets": {},
+            "deadlockRecoveryTicks": 0
+          },
+          "R6": {
+            "reachedDestination": true,
+            "arrivalTick": 26,
+            "totalTicksObserved": 26,
+            "movingTicks": 17,
+            "idealTicks": 15,
+            "detourExtraTicks": 2,
+            "waitBuckets": {
+              "conflict_wait": 9
+            },
+            "deadlockRecoveryTicks": 1
+          }
+        },
+        "totalReplanTriggers": 6,
+        "unnecessaryReplanTriggers": 4,
+        "replanEvents": [
+          {
+            "tick": 6,
+            "robot_id": "R2",
+            "trigger": "force_yield",
+            "avoided_cell": [
+              16,
+              2
+            ],
+            "peer_id": "R1",
+            "predicted_tick": 7,
+            "foundUnnecessary": true
+          },
+          {
+            "tick": 6,
+            "robot_id": "R6",
+            "trigger": "force_yield",
+            "avoided_cell": [
+              10,
+              16
+            ],
+            "peer_id": "R5",
+            "predicted_tick": 7,
+            "foundUnnecessary": true
+          },
+          {
+            "tick": 8,
+            "robot_id": "R6",
+            "trigger": "yield",
+            "avoided_cell": [
+              10,
+              14
+            ],
+            "peer_id": "R5",
+            "predicted_tick": 13,
+            "foundUnnecessary": false
+          },
+          {
+            "tick": 9,
+            "robot_id": "R6",
+            "trigger": "yield",
+            "avoided_cell": [
+              10,
+              12
+            ],
+            "peer_id": "R5",
+            "predicted_tick": 11,
+            "foundUnnecessary": false
+          },
+          {
+            "tick": 11,
+            "robot_id": "R4",
+            "trigger": "yield",
+            "avoided_cell": [
+              15,
+              17
+            ],
+            "peer_id": "R3",
+            "predicted_tick": 14,
+            "foundUnnecessary": true
+          },
+          {
+            "tick": 11,
+            "robot_id": "R4",
+            "trigger": "force_yield",
+            "avoided_cell": [
+              16,
+              17
+            ],
+            "peer_id": "R3",
+            "predicted_tick": 12,
+            "foundUnnecessary": true
+          }
+        ],
+        "totalYieldVerdicts": 26,
+        "yieldVerdictsByRobot": {
+          "R2": 6,
+          "R4": 11,
+          "R6": 9
+        },
+        "yieldEvents": [
+          {
+            "tick": 1,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 14,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 1,
+            "own_id": "R4",
+            "peer_id": "R3",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 14,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 1,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 14,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 2,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 13,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 2,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 2,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 13,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 3,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 12,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 3,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 3,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 12,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 4,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 11,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 4,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 4,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 11,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 5,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 10,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 5,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 5,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 10,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 6,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 9,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 6,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 6,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 9,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 7,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 7,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 8,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 8,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 8,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "YIELD",
+            "own_remaining": 15,
+            "peer_remaining": 7,
+            "conflict_type": "NARROW_AISLE_HEADON"
+          },
+          {
+            "tick": 9,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 9,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "YIELD",
+            "own_remaining": 15,
+            "peer_remaining": 6,
+            "conflict_type": "NARROW_AISLE_HEADON"
+          },
+          {
+            "tick": 10,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 11,
+            "own_id": "R4",
+            "peer_id": "R3",
+            "action": "YIELD",
+            "own_remaining": 15,
+            "peer_remaining": 7,
+            "conflict_type": "NARROW_AISLE_HEADON"
+          }
+        ],
+        "resetOnlyDeadlockEvents": [
+          {
+            "tick": 6,
+            "robot_id": "R4",
+            "peer_id": "R6"
+          }
+        ],
+        "plannerCallsDuringRun": 6,
+        "collisionCount": 0,
+        "deadlockCount": 4
+      },
+      {
+        "scenarioId": "g_high_load",
+        "seed": 4,
+        "completed": true,
+        "finalTick": 28,
+        "perRobot": {
+          "R1": {
+            "reachedDestination": true,
+            "arrivalTick": 15,
+            "totalTicksObserved": 15,
+            "movingTicks": 15,
+            "idealTicks": 15,
+            "detourExtraTicks": 0,
+            "waitBuckets": {},
+            "deadlockRecoveryTicks": 0
+          },
+          "R2": {
+            "reachedDestination": true,
+            "arrivalTick": 23,
+            "totalTicksObserved": 23,
+            "movingTicks": 17,
+            "idealTicks": 15,
+            "detourExtraTicks": 2,
+            "waitBuckets": {
+              "conflict_wait": 6
+            },
+            "deadlockRecoveryTicks": 1
+          },
+          "R3": {
+            "reachedDestination": true,
+            "arrivalTick": 18,
+            "totalTicksObserved": 18,
+            "movingTicks": 15,
+            "idealTicks": 15,
+            "detourExtraTicks": 0,
+            "waitBuckets": {
+              "conflict_wait": 3
+            },
+            "deadlockRecoveryTicks": 0
+          },
+          "R4": {
+            "reachedDestination": true,
+            "arrivalTick": 28,
+            "totalTicksObserved": 28,
+            "movingTicks": 17,
+            "idealTicks": 15,
+            "detourExtraTicks": 2,
+            "waitBuckets": {
+              "conflict_wait": 11
+            },
+            "deadlockRecoveryTicks": 2
+          },
+          "R5": {
+            "reachedDestination": true,
+            "arrivalTick": 15,
+            "totalTicksObserved": 15,
+            "movingTicks": 15,
+            "idealTicks": 15,
+            "detourExtraTicks": 0,
+            "waitBuckets": {},
+            "deadlockRecoveryTicks": 0
+          },
+          "R6": {
+            "reachedDestination": true,
+            "arrivalTick": 26,
+            "totalTicksObserved": 26,
+            "movingTicks": 17,
+            "idealTicks": 15,
+            "detourExtraTicks": 2,
+            "waitBuckets": {
+              "conflict_wait": 9
+            },
+            "deadlockRecoveryTicks": 1
+          }
+        },
+        "totalReplanTriggers": 6,
+        "unnecessaryReplanTriggers": 4,
+        "replanEvents": [
+          {
+            "tick": 6,
+            "robot_id": "R2",
+            "trigger": "force_yield",
+            "avoided_cell": [
+              16,
+              2
+            ],
+            "peer_id": "R1",
+            "predicted_tick": 7,
+            "foundUnnecessary": true
+          },
+          {
+            "tick": 6,
+            "robot_id": "R6",
+            "trigger": "force_yield",
+            "avoided_cell": [
+              10,
+              16
+            ],
+            "peer_id": "R5",
+            "predicted_tick": 7,
+            "foundUnnecessary": true
+          },
+          {
+            "tick": 8,
+            "robot_id": "R6",
+            "trigger": "yield",
+            "avoided_cell": [
+              10,
+              14
+            ],
+            "peer_id": "R5",
+            "predicted_tick": 13,
+            "foundUnnecessary": false
+          },
+          {
+            "tick": 9,
+            "robot_id": "R6",
+            "trigger": "yield",
+            "avoided_cell": [
+              10,
+              12
+            ],
+            "peer_id": "R5",
+            "predicted_tick": 11,
+            "foundUnnecessary": false
+          },
+          {
+            "tick": 11,
+            "robot_id": "R4",
+            "trigger": "yield",
+            "avoided_cell": [
+              15,
+              17
+            ],
+            "peer_id": "R3",
+            "predicted_tick": 14,
+            "foundUnnecessary": true
+          },
+          {
+            "tick": 11,
+            "robot_id": "R4",
+            "trigger": "force_yield",
+            "avoided_cell": [
+              16,
+              17
+            ],
+            "peer_id": "R3",
+            "predicted_tick": 12,
+            "foundUnnecessary": true
+          }
+        ],
+        "totalYieldVerdicts": 26,
+        "yieldVerdictsByRobot": {
+          "R2": 6,
+          "R4": 11,
+          "R6": 9
+        },
+        "yieldEvents": [
+          {
+            "tick": 1,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 14,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 1,
+            "own_id": "R4",
+            "peer_id": "R3",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 14,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 1,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 14,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 2,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 13,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 2,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 2,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 13,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 3,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 12,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 3,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 3,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 12,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 4,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 11,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 4,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 4,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 11,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 5,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 10,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 5,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 5,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 10,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 6,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 9,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 6,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 6,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 9,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 7,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 7,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 8,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 8,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 8,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "YIELD",
+            "own_remaining": 15,
+            "peer_remaining": 7,
+            "conflict_type": "NARROW_AISLE_HEADON"
+          },
+          {
+            "tick": 9,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 9,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "YIELD",
+            "own_remaining": 15,
+            "peer_remaining": 6,
+            "conflict_type": "NARROW_AISLE_HEADON"
+          },
+          {
+            "tick": 10,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 11,
+            "own_id": "R4",
+            "peer_id": "R3",
+            "action": "YIELD",
+            "own_remaining": 15,
+            "peer_remaining": 7,
+            "conflict_type": "NARROW_AISLE_HEADON"
+          }
+        ],
+        "resetOnlyDeadlockEvents": [
+          {
+            "tick": 6,
+            "robot_id": "R4",
+            "peer_id": "R6"
+          }
+        ],
+        "plannerCallsDuringRun": 6,
+        "collisionCount": 0,
+        "deadlockCount": 4
+      },
+      {
+        "scenarioId": "g_high_load",
+        "seed": 5,
+        "completed": true,
+        "finalTick": 28,
+        "perRobot": {
+          "R1": {
+            "reachedDestination": true,
+            "arrivalTick": 15,
+            "totalTicksObserved": 15,
+            "movingTicks": 15,
+            "idealTicks": 15,
+            "detourExtraTicks": 0,
+            "waitBuckets": {},
+            "deadlockRecoveryTicks": 0
+          },
+          "R2": {
+            "reachedDestination": true,
+            "arrivalTick": 23,
+            "totalTicksObserved": 23,
+            "movingTicks": 17,
+            "idealTicks": 15,
+            "detourExtraTicks": 2,
+            "waitBuckets": {
+              "conflict_wait": 6
+            },
+            "deadlockRecoveryTicks": 1
+          },
+          "R3": {
+            "reachedDestination": true,
+            "arrivalTick": 18,
+            "totalTicksObserved": 18,
+            "movingTicks": 15,
+            "idealTicks": 15,
+            "detourExtraTicks": 0,
+            "waitBuckets": {
+              "conflict_wait": 3
+            },
+            "deadlockRecoveryTicks": 0
+          },
+          "R4": {
+            "reachedDestination": true,
+            "arrivalTick": 28,
+            "totalTicksObserved": 28,
+            "movingTicks": 17,
+            "idealTicks": 15,
+            "detourExtraTicks": 2,
+            "waitBuckets": {
+              "conflict_wait": 11
+            },
+            "deadlockRecoveryTicks": 2
+          },
+          "R5": {
+            "reachedDestination": true,
+            "arrivalTick": 15,
+            "totalTicksObserved": 15,
+            "movingTicks": 15,
+            "idealTicks": 15,
+            "detourExtraTicks": 0,
+            "waitBuckets": {},
+            "deadlockRecoveryTicks": 0
+          },
+          "R6": {
+            "reachedDestination": true,
+            "arrivalTick": 26,
+            "totalTicksObserved": 26,
+            "movingTicks": 17,
+            "idealTicks": 15,
+            "detourExtraTicks": 2,
+            "waitBuckets": {
+              "conflict_wait": 9
+            },
+            "deadlockRecoveryTicks": 1
+          }
+        },
+        "totalReplanTriggers": 6,
+        "unnecessaryReplanTriggers": 4,
+        "replanEvents": [
+          {
+            "tick": 6,
+            "robot_id": "R2",
+            "trigger": "force_yield",
+            "avoided_cell": [
+              16,
+              2
+            ],
+            "peer_id": "R1",
+            "predicted_tick": 7,
+            "foundUnnecessary": true
+          },
+          {
+            "tick": 6,
+            "robot_id": "R6",
+            "trigger": "force_yield",
+            "avoided_cell": [
+              10,
+              16
+            ],
+            "peer_id": "R5",
+            "predicted_tick": 7,
+            "foundUnnecessary": true
+          },
+          {
+            "tick": 8,
+            "robot_id": "R6",
+            "trigger": "yield",
+            "avoided_cell": [
+              10,
+              14
+            ],
+            "peer_id": "R5",
+            "predicted_tick": 13,
+            "foundUnnecessary": false
+          },
+          {
+            "tick": 9,
+            "robot_id": "R6",
+            "trigger": "yield",
+            "avoided_cell": [
+              10,
+              12
+            ],
+            "peer_id": "R5",
+            "predicted_tick": 11,
+            "foundUnnecessary": false
+          },
+          {
+            "tick": 11,
+            "robot_id": "R4",
+            "trigger": "yield",
+            "avoided_cell": [
+              15,
+              17
+            ],
+            "peer_id": "R3",
+            "predicted_tick": 14,
+            "foundUnnecessary": true
+          },
+          {
+            "tick": 11,
+            "robot_id": "R4",
+            "trigger": "force_yield",
+            "avoided_cell": [
+              16,
+              17
+            ],
+            "peer_id": "R3",
+            "predicted_tick": 12,
+            "foundUnnecessary": true
+          }
+        ],
+        "totalYieldVerdicts": 26,
+        "yieldVerdictsByRobot": {
+          "R2": 6,
+          "R4": 11,
+          "R6": 9
+        },
+        "yieldEvents": [
+          {
+            "tick": 1,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 14,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 1,
+            "own_id": "R4",
+            "peer_id": "R3",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 14,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 1,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 14,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 2,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 13,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 2,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 2,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 13,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 3,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 12,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 3,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 3,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 12,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 4,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 11,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 4,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 4,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 11,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 5,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 10,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 5,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 5,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 10,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 6,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 9,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 6,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 6,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 9,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 7,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 7,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 8,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 8,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 8,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "YIELD",
+            "own_remaining": 15,
+            "peer_remaining": 7,
+            "conflict_type": "NARROW_AISLE_HEADON"
+          },
+          {
+            "tick": 9,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 9,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "YIELD",
+            "own_remaining": 15,
+            "peer_remaining": 6,
+            "conflict_type": "NARROW_AISLE_HEADON"
+          },
+          {
+            "tick": 10,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 11,
+            "own_id": "R4",
+            "peer_id": "R3",
+            "action": "YIELD",
+            "own_remaining": 15,
+            "peer_remaining": 7,
+            "conflict_type": "NARROW_AISLE_HEADON"
+          }
+        ],
+        "resetOnlyDeadlockEvents": [
+          {
+            "tick": 6,
+            "robot_id": "R4",
+            "peer_id": "R6"
+          }
+        ],
+        "plannerCallsDuringRun": 6,
+        "collisionCount": 0,
+        "deadlockCount": 4
+      },
+      {
+        "scenarioId": "g_high_load",
+        "seed": 6,
+        "completed": true,
+        "finalTick": 28,
+        "perRobot": {
+          "R1": {
+            "reachedDestination": true,
+            "arrivalTick": 15,
+            "totalTicksObserved": 15,
+            "movingTicks": 15,
+            "idealTicks": 15,
+            "detourExtraTicks": 0,
+            "waitBuckets": {},
+            "deadlockRecoveryTicks": 0
+          },
+          "R2": {
+            "reachedDestination": true,
+            "arrivalTick": 23,
+            "totalTicksObserved": 23,
+            "movingTicks": 17,
+            "idealTicks": 15,
+            "detourExtraTicks": 2,
+            "waitBuckets": {
+              "conflict_wait": 6
+            },
+            "deadlockRecoveryTicks": 1
+          },
+          "R3": {
+            "reachedDestination": true,
+            "arrivalTick": 18,
+            "totalTicksObserved": 18,
+            "movingTicks": 15,
+            "idealTicks": 15,
+            "detourExtraTicks": 0,
+            "waitBuckets": {
+              "conflict_wait": 3
+            },
+            "deadlockRecoveryTicks": 0
+          },
+          "R4": {
+            "reachedDestination": true,
+            "arrivalTick": 28,
+            "totalTicksObserved": 28,
+            "movingTicks": 17,
+            "idealTicks": 15,
+            "detourExtraTicks": 2,
+            "waitBuckets": {
+              "conflict_wait": 11
+            },
+            "deadlockRecoveryTicks": 2
+          },
+          "R5": {
+            "reachedDestination": true,
+            "arrivalTick": 15,
+            "totalTicksObserved": 15,
+            "movingTicks": 15,
+            "idealTicks": 15,
+            "detourExtraTicks": 0,
+            "waitBuckets": {},
+            "deadlockRecoveryTicks": 0
+          },
+          "R6": {
+            "reachedDestination": true,
+            "arrivalTick": 26,
+            "totalTicksObserved": 26,
+            "movingTicks": 17,
+            "idealTicks": 15,
+            "detourExtraTicks": 2,
+            "waitBuckets": {
+              "conflict_wait": 9
+            },
+            "deadlockRecoveryTicks": 1
+          }
+        },
+        "totalReplanTriggers": 6,
+        "unnecessaryReplanTriggers": 4,
+        "replanEvents": [
+          {
+            "tick": 6,
+            "robot_id": "R2",
+            "trigger": "force_yield",
+            "avoided_cell": [
+              16,
+              2
+            ],
+            "peer_id": "R1",
+            "predicted_tick": 7,
+            "foundUnnecessary": true
+          },
+          {
+            "tick": 6,
+            "robot_id": "R6",
+            "trigger": "force_yield",
+            "avoided_cell": [
+              10,
+              16
+            ],
+            "peer_id": "R5",
+            "predicted_tick": 7,
+            "foundUnnecessary": true
+          },
+          {
+            "tick": 8,
+            "robot_id": "R6",
+            "trigger": "yield",
+            "avoided_cell": [
+              10,
+              14
+            ],
+            "peer_id": "R5",
+            "predicted_tick": 13,
+            "foundUnnecessary": false
+          },
+          {
+            "tick": 9,
+            "robot_id": "R6",
+            "trigger": "yield",
+            "avoided_cell": [
+              10,
+              12
+            ],
+            "peer_id": "R5",
+            "predicted_tick": 11,
+            "foundUnnecessary": false
+          },
+          {
+            "tick": 11,
+            "robot_id": "R4",
+            "trigger": "yield",
+            "avoided_cell": [
+              15,
+              17
+            ],
+            "peer_id": "R3",
+            "predicted_tick": 14,
+            "foundUnnecessary": true
+          },
+          {
+            "tick": 11,
+            "robot_id": "R4",
+            "trigger": "force_yield",
+            "avoided_cell": [
+              16,
+              17
+            ],
+            "peer_id": "R3",
+            "predicted_tick": 12,
+            "foundUnnecessary": true
+          }
+        ],
+        "totalYieldVerdicts": 26,
+        "yieldVerdictsByRobot": {
+          "R2": 6,
+          "R4": 11,
+          "R6": 9
+        },
+        "yieldEvents": [
+          {
+            "tick": 1,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 14,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 1,
+            "own_id": "R4",
+            "peer_id": "R3",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 14,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 1,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 14,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 2,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 13,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 2,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 2,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 13,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 3,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 12,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 3,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 3,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 12,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 4,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 11,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 4,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 4,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 11,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 5,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 10,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 5,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 5,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 10,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 6,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 9,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 6,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 6,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 9,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 7,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 7,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 8,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 8,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 8,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "YIELD",
+            "own_remaining": 15,
+            "peer_remaining": 7,
+            "conflict_type": "NARROW_AISLE_HEADON"
+          },
+          {
+            "tick": 9,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 9,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "YIELD",
+            "own_remaining": 15,
+            "peer_remaining": 6,
+            "conflict_type": "NARROW_AISLE_HEADON"
+          },
+          {
+            "tick": 10,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 11,
+            "own_id": "R4",
+            "peer_id": "R3",
+            "action": "YIELD",
+            "own_remaining": 15,
+            "peer_remaining": 7,
+            "conflict_type": "NARROW_AISLE_HEADON"
+          }
+        ],
+        "resetOnlyDeadlockEvents": [
+          {
+            "tick": 6,
+            "robot_id": "R4",
+            "peer_id": "R6"
+          }
+        ],
+        "plannerCallsDuringRun": 6,
+        "collisionCount": 0,
+        "deadlockCount": 4
+      },
+      {
+        "scenarioId": "g_high_load",
+        "seed": 7,
+        "completed": true,
+        "finalTick": 28,
+        "perRobot": {
+          "R1": {
+            "reachedDestination": true,
+            "arrivalTick": 15,
+            "totalTicksObserved": 15,
+            "movingTicks": 15,
+            "idealTicks": 15,
+            "detourExtraTicks": 0,
+            "waitBuckets": {},
+            "deadlockRecoveryTicks": 0
+          },
+          "R2": {
+            "reachedDestination": true,
+            "arrivalTick": 23,
+            "totalTicksObserved": 23,
+            "movingTicks": 17,
+            "idealTicks": 15,
+            "detourExtraTicks": 2,
+            "waitBuckets": {
+              "conflict_wait": 6
+            },
+            "deadlockRecoveryTicks": 1
+          },
+          "R3": {
+            "reachedDestination": true,
+            "arrivalTick": 18,
+            "totalTicksObserved": 18,
+            "movingTicks": 15,
+            "idealTicks": 15,
+            "detourExtraTicks": 0,
+            "waitBuckets": {
+              "conflict_wait": 3
+            },
+            "deadlockRecoveryTicks": 0
+          },
+          "R4": {
+            "reachedDestination": true,
+            "arrivalTick": 28,
+            "totalTicksObserved": 28,
+            "movingTicks": 17,
+            "idealTicks": 15,
+            "detourExtraTicks": 2,
+            "waitBuckets": {
+              "conflict_wait": 11
+            },
+            "deadlockRecoveryTicks": 2
+          },
+          "R5": {
+            "reachedDestination": true,
+            "arrivalTick": 15,
+            "totalTicksObserved": 15,
+            "movingTicks": 15,
+            "idealTicks": 15,
+            "detourExtraTicks": 0,
+            "waitBuckets": {},
+            "deadlockRecoveryTicks": 0
+          },
+          "R6": {
+            "reachedDestination": true,
+            "arrivalTick": 26,
+            "totalTicksObserved": 26,
+            "movingTicks": 17,
+            "idealTicks": 15,
+            "detourExtraTicks": 2,
+            "waitBuckets": {
+              "conflict_wait": 9
+            },
+            "deadlockRecoveryTicks": 1
+          }
+        },
+        "totalReplanTriggers": 6,
+        "unnecessaryReplanTriggers": 4,
+        "replanEvents": [
+          {
+            "tick": 6,
+            "robot_id": "R2",
+            "trigger": "force_yield",
+            "avoided_cell": [
+              16,
+              2
+            ],
+            "peer_id": "R1",
+            "predicted_tick": 7,
+            "foundUnnecessary": true
+          },
+          {
+            "tick": 6,
+            "robot_id": "R6",
+            "trigger": "force_yield",
+            "avoided_cell": [
+              10,
+              16
+            ],
+            "peer_id": "R5",
+            "predicted_tick": 7,
+            "foundUnnecessary": true
+          },
+          {
+            "tick": 8,
+            "robot_id": "R6",
+            "trigger": "yield",
+            "avoided_cell": [
+              10,
+              14
+            ],
+            "peer_id": "R5",
+            "predicted_tick": 13,
+            "foundUnnecessary": false
+          },
+          {
+            "tick": 9,
+            "robot_id": "R6",
+            "trigger": "yield",
+            "avoided_cell": [
+              10,
+              12
+            ],
+            "peer_id": "R5",
+            "predicted_tick": 11,
+            "foundUnnecessary": false
+          },
+          {
+            "tick": 11,
+            "robot_id": "R4",
+            "trigger": "yield",
+            "avoided_cell": [
+              15,
+              17
+            ],
+            "peer_id": "R3",
+            "predicted_tick": 14,
+            "foundUnnecessary": true
+          },
+          {
+            "tick": 11,
+            "robot_id": "R4",
+            "trigger": "force_yield",
+            "avoided_cell": [
+              16,
+              17
+            ],
+            "peer_id": "R3",
+            "predicted_tick": 12,
+            "foundUnnecessary": true
+          }
+        ],
+        "totalYieldVerdicts": 26,
+        "yieldVerdictsByRobot": {
+          "R2": 6,
+          "R4": 11,
+          "R6": 9
+        },
+        "yieldEvents": [
+          {
+            "tick": 1,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 14,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 1,
+            "own_id": "R4",
+            "peer_id": "R3",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 14,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 1,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 14,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 2,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 13,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 2,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 2,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 13,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 3,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 12,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 3,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 3,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 12,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 4,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 11,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 4,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 4,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 11,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 5,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 10,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 5,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 5,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 10,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 6,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 9,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 6,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 6,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 9,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 7,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 7,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 8,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 8,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 8,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "YIELD",
+            "own_remaining": 15,
+            "peer_remaining": 7,
+            "conflict_type": "NARROW_AISLE_HEADON"
+          },
+          {
+            "tick": 9,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 9,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "YIELD",
+            "own_remaining": 15,
+            "peer_remaining": 6,
+            "conflict_type": "NARROW_AISLE_HEADON"
+          },
+          {
+            "tick": 10,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 11,
+            "own_id": "R4",
+            "peer_id": "R3",
+            "action": "YIELD",
+            "own_remaining": 15,
+            "peer_remaining": 7,
+            "conflict_type": "NARROW_AISLE_HEADON"
+          }
+        ],
+        "resetOnlyDeadlockEvents": [
+          {
+            "tick": 6,
+            "robot_id": "R4",
+            "peer_id": "R6"
+          }
+        ],
+        "plannerCallsDuringRun": 6,
+        "collisionCount": 0,
+        "deadlockCount": 4
+      },
+      {
+        "scenarioId": "g_high_load",
+        "seed": 8,
+        "completed": true,
+        "finalTick": 28,
+        "perRobot": {
+          "R1": {
+            "reachedDestination": true,
+            "arrivalTick": 15,
+            "totalTicksObserved": 15,
+            "movingTicks": 15,
+            "idealTicks": 15,
+            "detourExtraTicks": 0,
+            "waitBuckets": {},
+            "deadlockRecoveryTicks": 0
+          },
+          "R2": {
+            "reachedDestination": true,
+            "arrivalTick": 23,
+            "totalTicksObserved": 23,
+            "movingTicks": 17,
+            "idealTicks": 15,
+            "detourExtraTicks": 2,
+            "waitBuckets": {
+              "conflict_wait": 6
+            },
+            "deadlockRecoveryTicks": 1
+          },
+          "R3": {
+            "reachedDestination": true,
+            "arrivalTick": 18,
+            "totalTicksObserved": 18,
+            "movingTicks": 15,
+            "idealTicks": 15,
+            "detourExtraTicks": 0,
+            "waitBuckets": {
+              "conflict_wait": 3
+            },
+            "deadlockRecoveryTicks": 0
+          },
+          "R4": {
+            "reachedDestination": true,
+            "arrivalTick": 28,
+            "totalTicksObserved": 28,
+            "movingTicks": 17,
+            "idealTicks": 15,
+            "detourExtraTicks": 2,
+            "waitBuckets": {
+              "conflict_wait": 11
+            },
+            "deadlockRecoveryTicks": 2
+          },
+          "R5": {
+            "reachedDestination": true,
+            "arrivalTick": 15,
+            "totalTicksObserved": 15,
+            "movingTicks": 15,
+            "idealTicks": 15,
+            "detourExtraTicks": 0,
+            "waitBuckets": {},
+            "deadlockRecoveryTicks": 0
+          },
+          "R6": {
+            "reachedDestination": true,
+            "arrivalTick": 26,
+            "totalTicksObserved": 26,
+            "movingTicks": 17,
+            "idealTicks": 15,
+            "detourExtraTicks": 2,
+            "waitBuckets": {
+              "conflict_wait": 9
+            },
+            "deadlockRecoveryTicks": 1
+          }
+        },
+        "totalReplanTriggers": 6,
+        "unnecessaryReplanTriggers": 4,
+        "replanEvents": [
+          {
+            "tick": 6,
+            "robot_id": "R2",
+            "trigger": "force_yield",
+            "avoided_cell": [
+              16,
+              2
+            ],
+            "peer_id": "R1",
+            "predicted_tick": 7,
+            "foundUnnecessary": true
+          },
+          {
+            "tick": 6,
+            "robot_id": "R6",
+            "trigger": "force_yield",
+            "avoided_cell": [
+              10,
+              16
+            ],
+            "peer_id": "R5",
+            "predicted_tick": 7,
+            "foundUnnecessary": true
+          },
+          {
+            "tick": 8,
+            "robot_id": "R6",
+            "trigger": "yield",
+            "avoided_cell": [
+              10,
+              14
+            ],
+            "peer_id": "R5",
+            "predicted_tick": 13,
+            "foundUnnecessary": false
+          },
+          {
+            "tick": 9,
+            "robot_id": "R6",
+            "trigger": "yield",
+            "avoided_cell": [
+              10,
+              12
+            ],
+            "peer_id": "R5",
+            "predicted_tick": 11,
+            "foundUnnecessary": false
+          },
+          {
+            "tick": 11,
+            "robot_id": "R4",
+            "trigger": "yield",
+            "avoided_cell": [
+              15,
+              17
+            ],
+            "peer_id": "R3",
+            "predicted_tick": 14,
+            "foundUnnecessary": true
+          },
+          {
+            "tick": 11,
+            "robot_id": "R4",
+            "trigger": "force_yield",
+            "avoided_cell": [
+              16,
+              17
+            ],
+            "peer_id": "R3",
+            "predicted_tick": 12,
+            "foundUnnecessary": true
+          }
+        ],
+        "totalYieldVerdicts": 26,
+        "yieldVerdictsByRobot": {
+          "R2": 6,
+          "R4": 11,
+          "R6": 9
+        },
+        "yieldEvents": [
+          {
+            "tick": 1,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 14,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 1,
+            "own_id": "R4",
+            "peer_id": "R3",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 14,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 1,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 14,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 2,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 13,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 2,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 2,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 13,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 3,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 12,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 3,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 3,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 12,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 4,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 11,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 4,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 4,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 11,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 5,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 10,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 5,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 5,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 10,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 6,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 9,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 6,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 6,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 9,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 7,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 7,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 8,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 8,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 8,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "YIELD",
+            "own_remaining": 15,
+            "peer_remaining": 7,
+            "conflict_type": "NARROW_AISLE_HEADON"
+          },
+          {
+            "tick": 9,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 9,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "YIELD",
+            "own_remaining": 15,
+            "peer_remaining": 6,
+            "conflict_type": "NARROW_AISLE_HEADON"
+          },
+          {
+            "tick": 10,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 11,
+            "own_id": "R4",
+            "peer_id": "R3",
+            "action": "YIELD",
+            "own_remaining": 15,
+            "peer_remaining": 7,
+            "conflict_type": "NARROW_AISLE_HEADON"
+          }
+        ],
+        "resetOnlyDeadlockEvents": [
+          {
+            "tick": 6,
+            "robot_id": "R4",
+            "peer_id": "R6"
+          }
+        ],
+        "plannerCallsDuringRun": 6,
+        "collisionCount": 0,
+        "deadlockCount": 4
+      },
+      {
+        "scenarioId": "g_high_load",
+        "seed": 9,
+        "completed": true,
+        "finalTick": 28,
+        "perRobot": {
+          "R1": {
+            "reachedDestination": true,
+            "arrivalTick": 15,
+            "totalTicksObserved": 15,
+            "movingTicks": 15,
+            "idealTicks": 15,
+            "detourExtraTicks": 0,
+            "waitBuckets": {},
+            "deadlockRecoveryTicks": 0
+          },
+          "R2": {
+            "reachedDestination": true,
+            "arrivalTick": 23,
+            "totalTicksObserved": 23,
+            "movingTicks": 17,
+            "idealTicks": 15,
+            "detourExtraTicks": 2,
+            "waitBuckets": {
+              "conflict_wait": 6
+            },
+            "deadlockRecoveryTicks": 1
+          },
+          "R3": {
+            "reachedDestination": true,
+            "arrivalTick": 18,
+            "totalTicksObserved": 18,
+            "movingTicks": 15,
+            "idealTicks": 15,
+            "detourExtraTicks": 0,
+            "waitBuckets": {
+              "conflict_wait": 3
+            },
+            "deadlockRecoveryTicks": 0
+          },
+          "R4": {
+            "reachedDestination": true,
+            "arrivalTick": 28,
+            "totalTicksObserved": 28,
+            "movingTicks": 17,
+            "idealTicks": 15,
+            "detourExtraTicks": 2,
+            "waitBuckets": {
+              "conflict_wait": 11
+            },
+            "deadlockRecoveryTicks": 2
+          },
+          "R5": {
+            "reachedDestination": true,
+            "arrivalTick": 15,
+            "totalTicksObserved": 15,
+            "movingTicks": 15,
+            "idealTicks": 15,
+            "detourExtraTicks": 0,
+            "waitBuckets": {},
+            "deadlockRecoveryTicks": 0
+          },
+          "R6": {
+            "reachedDestination": true,
+            "arrivalTick": 26,
+            "totalTicksObserved": 26,
+            "movingTicks": 17,
+            "idealTicks": 15,
+            "detourExtraTicks": 2,
+            "waitBuckets": {
+              "conflict_wait": 9
+            },
+            "deadlockRecoveryTicks": 1
+          }
+        },
+        "totalReplanTriggers": 6,
+        "unnecessaryReplanTriggers": 4,
+        "replanEvents": [
+          {
+            "tick": 6,
+            "robot_id": "R2",
+            "trigger": "force_yield",
+            "avoided_cell": [
+              16,
+              2
+            ],
+            "peer_id": "R1",
+            "predicted_tick": 7,
+            "foundUnnecessary": true
+          },
+          {
+            "tick": 6,
+            "robot_id": "R6",
+            "trigger": "force_yield",
+            "avoided_cell": [
+              10,
+              16
+            ],
+            "peer_id": "R5",
+            "predicted_tick": 7,
+            "foundUnnecessary": true
+          },
+          {
+            "tick": 8,
+            "robot_id": "R6",
+            "trigger": "yield",
+            "avoided_cell": [
+              10,
+              14
+            ],
+            "peer_id": "R5",
+            "predicted_tick": 13,
+            "foundUnnecessary": false
+          },
+          {
+            "tick": 9,
+            "robot_id": "R6",
+            "trigger": "yield",
+            "avoided_cell": [
+              10,
+              12
+            ],
+            "peer_id": "R5",
+            "predicted_tick": 11,
+            "foundUnnecessary": false
+          },
+          {
+            "tick": 11,
+            "robot_id": "R4",
+            "trigger": "yield",
+            "avoided_cell": [
+              15,
+              17
+            ],
+            "peer_id": "R3",
+            "predicted_tick": 14,
+            "foundUnnecessary": true
+          },
+          {
+            "tick": 11,
+            "robot_id": "R4",
+            "trigger": "force_yield",
+            "avoided_cell": [
+              16,
+              17
+            ],
+            "peer_id": "R3",
+            "predicted_tick": 12,
+            "foundUnnecessary": true
+          }
+        ],
+        "totalYieldVerdicts": 26,
+        "yieldVerdictsByRobot": {
+          "R2": 6,
+          "R4": 11,
+          "R6": 9
+        },
+        "yieldEvents": [
+          {
+            "tick": 1,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 14,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 1,
+            "own_id": "R4",
+            "peer_id": "R3",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 14,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 1,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 14,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 2,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 13,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 2,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 2,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 13,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 3,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 12,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 3,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 3,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 12,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 4,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 11,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 4,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 4,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 11,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 5,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 10,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 5,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 5,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 10,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 6,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 9,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 6,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 6,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 9,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 7,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 7,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 8,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 8,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 8,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "YIELD",
+            "own_remaining": 15,
+            "peer_remaining": 7,
+            "conflict_type": "NARROW_AISLE_HEADON"
+          },
+          {
+            "tick": 9,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 9,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "YIELD",
+            "own_remaining": 15,
+            "peer_remaining": 6,
+            "conflict_type": "NARROW_AISLE_HEADON"
+          },
+          {
+            "tick": 10,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 11,
+            "own_id": "R4",
+            "peer_id": "R3",
+            "action": "YIELD",
+            "own_remaining": 15,
+            "peer_remaining": 7,
+            "conflict_type": "NARROW_AISLE_HEADON"
+          }
+        ],
+        "resetOnlyDeadlockEvents": [
+          {
+            "tick": 6,
+            "robot_id": "R4",
+            "peer_id": "R6"
+          }
+        ],
+        "plannerCallsDuringRun": 6,
+        "collisionCount": 0,
+        "deadlockCount": 4
+      },
+      {
+        "scenarioId": "g_high_load",
+        "seed": 10,
+        "completed": true,
+        "finalTick": 28,
+        "perRobot": {
+          "R1": {
+            "reachedDestination": true,
+            "arrivalTick": 15,
+            "totalTicksObserved": 15,
+            "movingTicks": 15,
+            "idealTicks": 15,
+            "detourExtraTicks": 0,
+            "waitBuckets": {},
+            "deadlockRecoveryTicks": 0
+          },
+          "R2": {
+            "reachedDestination": true,
+            "arrivalTick": 23,
+            "totalTicksObserved": 23,
+            "movingTicks": 17,
+            "idealTicks": 15,
+            "detourExtraTicks": 2,
+            "waitBuckets": {
+              "conflict_wait": 6
+            },
+            "deadlockRecoveryTicks": 1
+          },
+          "R3": {
+            "reachedDestination": true,
+            "arrivalTick": 18,
+            "totalTicksObserved": 18,
+            "movingTicks": 15,
+            "idealTicks": 15,
+            "detourExtraTicks": 0,
+            "waitBuckets": {
+              "conflict_wait": 3
+            },
+            "deadlockRecoveryTicks": 0
+          },
+          "R4": {
+            "reachedDestination": true,
+            "arrivalTick": 28,
+            "totalTicksObserved": 28,
+            "movingTicks": 17,
+            "idealTicks": 15,
+            "detourExtraTicks": 2,
+            "waitBuckets": {
+              "conflict_wait": 11
+            },
+            "deadlockRecoveryTicks": 2
+          },
+          "R5": {
+            "reachedDestination": true,
+            "arrivalTick": 15,
+            "totalTicksObserved": 15,
+            "movingTicks": 15,
+            "idealTicks": 15,
+            "detourExtraTicks": 0,
+            "waitBuckets": {},
+            "deadlockRecoveryTicks": 0
+          },
+          "R6": {
+            "reachedDestination": true,
+            "arrivalTick": 26,
+            "totalTicksObserved": 26,
+            "movingTicks": 17,
+            "idealTicks": 15,
+            "detourExtraTicks": 2,
+            "waitBuckets": {
+              "conflict_wait": 9
+            },
+            "deadlockRecoveryTicks": 1
+          }
+        },
+        "totalReplanTriggers": 6,
+        "unnecessaryReplanTriggers": 4,
+        "replanEvents": [
+          {
+            "tick": 6,
+            "robot_id": "R2",
+            "trigger": "force_yield",
+            "avoided_cell": [
+              16,
+              2
+            ],
+            "peer_id": "R1",
+            "predicted_tick": 7,
+            "foundUnnecessary": true
+          },
+          {
+            "tick": 6,
+            "robot_id": "R6",
+            "trigger": "force_yield",
+            "avoided_cell": [
+              10,
+              16
+            ],
+            "peer_id": "R5",
+            "predicted_tick": 7,
+            "foundUnnecessary": true
+          },
+          {
+            "tick": 8,
+            "robot_id": "R6",
+            "trigger": "yield",
+            "avoided_cell": [
+              10,
+              14
+            ],
+            "peer_id": "R5",
+            "predicted_tick": 13,
+            "foundUnnecessary": false
+          },
+          {
+            "tick": 9,
+            "robot_id": "R6",
+            "trigger": "yield",
+            "avoided_cell": [
+              10,
+              12
+            ],
+            "peer_id": "R5",
+            "predicted_tick": 11,
+            "foundUnnecessary": false
+          },
+          {
+            "tick": 11,
+            "robot_id": "R4",
+            "trigger": "yield",
+            "avoided_cell": [
+              15,
+              17
+            ],
+            "peer_id": "R3",
+            "predicted_tick": 14,
+            "foundUnnecessary": true
+          },
+          {
+            "tick": 11,
+            "robot_id": "R4",
+            "trigger": "force_yield",
+            "avoided_cell": [
+              16,
+              17
+            ],
+            "peer_id": "R3",
+            "predicted_tick": 12,
+            "foundUnnecessary": true
+          }
+        ],
+        "totalYieldVerdicts": 26,
+        "yieldVerdictsByRobot": {
+          "R2": 6,
+          "R4": 11,
+          "R6": 9
+        },
+        "yieldEvents": [
+          {
+            "tick": 1,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 14,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 1,
+            "own_id": "R4",
+            "peer_id": "R3",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 14,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 1,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 14,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 2,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 13,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 2,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 2,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 13,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 3,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 12,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 3,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 3,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 12,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 4,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 11,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 4,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 4,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 11,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 5,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 10,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 5,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 5,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 10,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 6,
+            "own_id": "R2",
+            "peer_id": "R1",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 9,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 6,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 6,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 9,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 7,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 7,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 8,
+            "conflict_type": "CROSSING"
+          },
+          {
+            "tick": 8,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 8,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "YIELD",
+            "own_remaining": 15,
+            "peer_remaining": 7,
+            "conflict_type": "NARROW_AISLE_HEADON"
+          },
+          {
+            "tick": 9,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 9,
+            "own_id": "R6",
+            "peer_id": "R5",
+            "action": "YIELD",
+            "own_remaining": 15,
+            "peer_remaining": 6,
+            "conflict_type": "NARROW_AISLE_HEADON"
+          },
+          {
+            "tick": 10,
+            "own_id": "R4",
+            "peer_id": "R6",
+            "action": "WAIT",
+            "own_remaining": 15,
+            "peer_remaining": 15,
+            "conflict_type": "SAME_CELL"
+          },
+          {
+            "tick": 11,
+            "own_id": "R4",
+            "peer_id": "R3",
+            "action": "YIELD",
+            "own_remaining": 15,
+            "peer_remaining": 7,
+            "conflict_type": "NARROW_AISLE_HEADON"
+          }
+        ],
+        "resetOnlyDeadlockEvents": [
+          {
+            "tick": 6,
+            "robot_id": "R4",
+            "peer_id": "R6"
+          }
+        ],
+        "plannerCallsDuringRun": 6,
+        "collisionCount": 0,
+        "deadlockCount": 4
+      }
+    ]
+  }
+}

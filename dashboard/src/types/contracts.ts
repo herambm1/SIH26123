@@ -89,13 +89,34 @@ export interface Telemetry {
 
 /**
  * type ∈ {AISLE_BLOCKED, ROBOT_UNAVAILABLE, TASK_CREATED, CONFLICT_DETECTED,
- *          DEADLOCK_DETECTED, REROUTE, TASK_REASSIGNED}
+ *          DEADLOCK_DETECTED, REROUTE, TASK_REASSIGNED, NEGOTIATION}
+ *
+ * NEGOTIATION (Phase 5, approved addition "b-2"): observability only,
+ * emitted by simulation/runner.py from real RobotAgent/ConflictResolver
+ * attributes already computed inside agent.tick() — never a new decision,
+ * DECENTRALIZED_PROPOSED mode only (the baselines never run
+ * ConflictDetector/ConflictResolver, so there is nothing to observe for
+ * them). Fires only on a genuine change from the robot's previously
+ * recorded action. payload shape: NegotiationEventPayload below.
+ *
+ * NOTE: only DEADLOCK_DETECTED and REROUTE are listed in the frozen
+ * contract's type set but are NEVER actually constructed anywhere in the
+ * current codebase (confirmed by source inspection, Phase 1 audit) — a
+ * timeline showing these types will legitimately never see one; that is
+ * real absence, not a frontend gap.
  */
 export interface SimulationEvent {
   eventId: string;
   type: string;
   tick: number;
   payload: Record<string, unknown>;
+}
+
+/** Real payload shape of a NEGOTIATION event — see SimulationEvent above. */
+export interface NegotiationEventPayload {
+  robotId: string;
+  peerRobotId: string | null;
+  resolutionAction: 'CONTINUE' | 'WAIT' | 'YIELD' | 'REROUTE' | 'REASSIGN_TASK';
 }
 
 /**
@@ -123,3 +144,48 @@ export type LiveWsMessage =
   | { type: 'ROBOT_STATE_BATCH'; tick: number; payload: RobotState[] }
   | { type: 'SIMULATION_EVENT'; tick: number; payload: SimulationEvent }
   | { type: 'METRIC_UPDATE'; tick: number; payload: PerformanceMetric };
+
+// ── Simulation control (mirrors SimulationControlController / SimulationClient) ──
+// NOT a shared/python/models.py contract — SimulationRunner.run()'s actual
+// parameters and Python's GET /control/status response shape, inspected
+// directly (see CLAUDE.md / Phase 1 audit), same status as
+// backend's SimulationStatusDto.
+
+export type SimulationMode = 'STOP_AND_WAIT' | 'CENTRALIZED_RESERVATION' | 'DECENTRALIZED_PROPOSED';
+export type SimulationSpeed = 'BATCH' | 'LIVE';
+
+export interface SimulationControlStartRequest {
+  action: 'start';
+  scenarioId: string;
+  mode: SimulationMode;
+  seed: number;
+  speed: SimulationSpeed;
+}
+
+export interface SimulationControlStopRequest {
+  action: 'stop';
+}
+
+export interface SimulationControlAck {
+  message: string;
+  runId?: string;
+  scenarioId?: string;
+  mode?: string;
+  seed?: number;
+  speed?: string;
+}
+
+/** GET /api/simulation/status → Python's real /control/status shape, proxied verbatim. */
+export interface SimulationStatus {
+  running: boolean;
+  currentTick: number;
+  scenarioId: string | null;
+  mode: string;
+}
+
+/** Mirrors ApiErrorDto — the uniform error body on every non-2xx backend response. */
+export interface ApiError {
+  error: string;
+  message: string;
+  timestamp?: string;
+}
